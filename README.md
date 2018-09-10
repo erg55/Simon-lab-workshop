@@ -165,18 +165,40 @@ This is the amount of memory you need for the job. Assemblers often require a hi
 #This is the file name created from the standard error of the job in the folder in which you ran the script.
 
 ```
+Much more information about the Xanadu resource can be found online [here](https://bioinformatics.uconn.edu/resources-and-events/tutorials-2/xanadu/)
+
+Create a script named test.sh with the following text using **nano test.sh**:
 
 ```
-    sinfo -s
+#!/bin/bash
+#SBATCH --job-name=trinity
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --partition=general
+#SBATCH --mail-type=END
+#SBATCH --mem=1G
+#SBATCH --mail-user=email@uconn.edu
+#SBATCH -o myscript_%j.out
+#SBATCH -e myscript_%j.err
+echo "Hello World!"
 ```
+Now you can use **sbatch script.sh** to submit the script:
 ```
-    squeue
+    sbatch script.sh
 ```
+Use **squeue** to check the status of the job requesting jobs run by only your username:
 ```
     squeue -u USERNAME
 ```
+Or you can look at all the jobs running or in line to run:
 ```
-    sbatch script
+    squeue
+```
+
+
+```
+    sinfo -s
 ```
 
 
