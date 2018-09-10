@@ -28,12 +28,22 @@ You could also use the wildcard to match anything and copy all matching files at
 ```
     cp /home/CAM/egordon/Dropbox/P0075_CS_I27897_S125_L001* .
 ```
+Use head to look into the files you downloaded:
+```
+    head P0075* 
+```
+Press Control+C to interrupt a command.
 
+Oops they are still zipped, Press Control+C to interrupt a command.
 
+Instead you can try use zcat to print the file and then pass it to the head command with the "|" symbol:
+```
+    zcat P0075* | head
+```
 
 
 
 
 Tools:
-[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/),
 [BBmap](https://sourceforge.net/projects/bbmap/)
