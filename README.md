@@ -2,7 +2,7 @@
 Learning! 
 
 
-BASICS
+#### BASICS
 
 Let's start with logging into the cluster: 
 ```
@@ -71,7 +71,7 @@ nano will allow you to edit or create a text document based on the name you give
 
 pwd will Print your current Working Directory. 
 
-EASTER EGG 
+#### EASTER EGG 
 
 Let's do something so we barely every have to use that pwd command. Go up one folder to your home directory: 
 ```
@@ -106,10 +106,9 @@ Log out of and then back into the cluster:
 ```
 Now you can see where you are all the time! Neat! 
 
-/EASTER EGG
 
 
-PLAYING WITH DATA AND CLUSTER THINGS
+#### PLAYING WITH DATA AND CLUSTER THINGS
 
 
 ```
