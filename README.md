@@ -71,7 +71,7 @@ pwd will print your current working directory.
 
 EASTER EGG 
 
-Let's do something so we barely every have to use that command. Go up one folder to your home directory: 
+Let's do something so we barely every have to use that pwd command. Go up one folder to your home directory: 
 ```
     cd ..
 ```
@@ -102,9 +102,10 @@ Log out of and then back into the cluster:
     exit
     ssh USERNAME@xanadu-submit-ext.cam.uchc.edu
 ```
-Now you can where you are all the time! Neat! 
+Now you can see where you are all the time! Neat! 
 
 /EASTER EGG
+
 
 PLAYING WITH DATA
 
