@@ -248,6 +248,20 @@ Run spades
 
 Most of these are stolen from my colloborator [Alex Knyshov](https://github.com/AlexKnyshov/main_repo)
 
+### BLAST Parser Script
+
+Found [here](https://github.com/AlexKnyshov/main_repo/blob/master/blast/mainblparser.py)
+
+You can git clone it:
+
+```
+git clone https://github.com/AlexKnyshov/main_repo/blob/master/blast/mainblparser.py
+```
+or 
+```
+wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainblparser.py
+```
+
 #### Tools:  
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
 [BLAST](https://www.ncbi.nlm.nih.gov/books/NBK279690/)  
