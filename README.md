@@ -40,6 +40,8 @@ Instead you can try use zcat to print the file and then pass it to the head comm
     zcat P0075* | head
 ```
 
+That's what fastq files look like! Neat!
+
 
 
 
