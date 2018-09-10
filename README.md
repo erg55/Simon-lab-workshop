@@ -246,7 +246,7 @@ Run spades
 
 ## USEFUL SCRIPTS
 
-
+Most of these are stolen from my colloborator [Alex Knyshov](https://github.com/AlexKnyshov/main_repo)
 
 #### Tools:  
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
