@@ -1,6 +1,7 @@
 # Simon-lab-workshop
 Learning! 
 
+Today I would like for all of us to get a handle on the basics of working and navigating on the UConn cluster as well as working with NextGen sequencing data and some of the commonly used tools. Maybe today or next week, we will be able to get some of the raw reads assembled and can start working with those files
 
 ## BASICS
 
@@ -130,3 +131,4 @@ Tools:
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/),
 [BLAST](https://www.ncbi.nlm.nih.gov/books/NBK279690/),
 [BBmap](https://sourceforge.net/projects/bbmap/)
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
