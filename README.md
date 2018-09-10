@@ -2,7 +2,7 @@
 Learning! 
 
 
-##### BASICS
+## BASICS
 
 Let's start with logging into the cluster: 
 ```
@@ -108,7 +108,7 @@ Now you can see where you are all the time! Neat!
 
 
 
-##### PLAYING WITH DATA AND CLUSTER THINGS
+## PLAYING WITH DATA AND CLUSTER THINGS
 
 
 ```
