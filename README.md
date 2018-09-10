@@ -53,9 +53,12 @@ So if you just wanted the first line of each our yours files you could run:
 ```
 There are many other commonly used commands in bash, here are some of other most used ones. Try them out!
 
-ls prints out all the contents of the folder you're in or that you list: 
+ls prints out all the contents of the folder you're in or that you list
+
 gunzip will unzip a file
+
 cat will print out the contents of an unzipped file
+
 touch will create a blank text document of the name you give it 
 nano will allow you to edit or create a text document based on the name you give
 
