@@ -119,7 +119,12 @@ Now you can see where you are all the time! Neat!
 ```
     sinfo -s
 ```
-
+```
+    squeue
+```
+```
+    squeue -u USERNAME
+```
 ```
     sbatch script
 ```
@@ -130,5 +135,5 @@ Now you can see where you are all the time! Neat!
 Tools:
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/),
 [BLAST](https://www.ncbi.nlm.nih.gov/books/NBK279690/),
-[BBmap](https://sourceforge.net/projects/bbmap/)
+[BBmap](https://sourceforge.net/projects/bbmap/),
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
