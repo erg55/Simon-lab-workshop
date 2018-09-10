@@ -4,9 +4,9 @@
 Today, I would like for all of us to get a handle on the basics of working and navigating on the UConn cluster as well as working with NextGen sequencing data and familiarity with some of the commonly used tools. I think each of us should work on a single dataset at first and then maybe today or next week, we will be able to get some of the raw reads assembled and can start actually doing stuff with those files. 
 
 ### Table of Contents
-[Basics](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#basics)
-[Cluster Things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)
-[Playing with sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#playing-with-sequence-data)
+* [Basics](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#basics)  
+* [Cluster Things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)  
+* [Playing with sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#playing-with-sequence-data)
 
 ## BASICS
 
