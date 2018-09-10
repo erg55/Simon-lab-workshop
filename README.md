@@ -209,6 +209,39 @@ Or you can look at all the jobs running or in line to run:
 
 ## PLAYING WITH SEQUENCE DATA
 
+Some of the seuqnece data has been artifically split up into smaller files. Let's combine them before assembly:
+```
+    sinfo -s
+```
+
+```
+fastqc
+```
+Download the fastqc file
+```
+    rsync
+```
+Deduplication
+```
+clumpify.sh in1=$x'R1_001.fastq.gz' in2=$x'R2_001.fastq.gz' out1='dedup'$x'R1.fastq.gz', out2='dedup'$x'R2.fastq.gz' dedupe;
+```
+Trimming
+```
+trimmomatic-0.36.jar PE -phred33 'dedup'$x'R1.fastq.gz,' 'dedup'$x'R2.fastq.gz' $x'_forward_paired.fq.gz' $x'_forward_unpaired.fq.gz' $x'_reverse_paired.fq.gz' $x'_reverse_unpaired.fq.gz' ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50;
+```
+Merging
+```
+bbmerge.sh in1=$x'_forward_paired.fq.gz' in2=$x'_reverse_paired.fq.gz' out=$x'merged.fq.gz' outu1=$x'unmergedF.fq.gz' outu2=$x'unmergedR.fq.gz'
+```
+Combine all files for spades
+```
+cat $x'unmergedF.fq.gz' $x'unmergedR.fq.gz' $x'_forward_unpaired.fq.gz' $x'_reverse_unpaired.fq.gz' > $x'allsinglereadscombined.fq.gz'
+```
+Run spades
+```
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 20 --merged $x'merged.fq.gz' -s $x'allsinglereadscombined.fq.gz' -o $x'trimmedspades.assembly/'
+```
+
 
 
 
@@ -217,3 +250,4 @@ Tools:
 [BLAST](https://www.ncbi.nlm.nih.gov/books/NBK279690/),
 [BBmap](https://sourceforge.net/projects/bbmap/),
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+[Spades](http://spades.bioinf.spbau.ru/release3.9.0/manual.html)
