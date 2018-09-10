@@ -77,7 +77,9 @@ There are many other commonly used commands in bash, here are some of other most
 
 **pwd** will Print your current Working Directory. 
 
+! [egg](https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png)
 #### EASTER EGG 
+! [egg](https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png)
 
 Let's do something so we barely every have to use that **pwd** command. Go up one folder to your home directory: 
 ```
