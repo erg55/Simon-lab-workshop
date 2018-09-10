@@ -269,5 +269,5 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)  
 [Spades](http://spades.bioinf.spbau.ru/release3.9.0/manual.html)  
 [BWA](http://bio-bwa.sourceforge.net/bwa.shtml)  
-[SeqTK]()  
+[SeqTK](https://github.com/lh3/seqtk)  
 
