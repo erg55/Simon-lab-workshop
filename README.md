@@ -87,9 +87,15 @@ Go into that file with nano:
 ```
 And paste the following into the file: 
 ```
-    export PS1="egordon@xanadu-submit-ext.cam.uchc.edu:  \w:"
+    export PS1="username@xanadu-submit-ext.cam.uchc.edu:  \w:"
 ```
 Exit with control+X, then "Y"
+
+Log out of and then back into the cluster:
+```
+    exit
+    ssh USERNAME@xanadu-submit-ext.cam.uchc.edu
+```
 
 
 
