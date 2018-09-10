@@ -42,7 +42,22 @@ Instead you can try use zcat to print the file and then pass it to the head comm
 
 That's what fastq files look like! Neat!
 
+If you want to read more information or look at the options you can use with various shell commans try running the command with the double flag --help:
 
+```
+    head --help
+```
+So if you just wanted the first line of each our yours files you could run: 
+```
+    zcat P0075* | head -1
+```
+There are many other commonly used commands in bash, here are some of other most used ones. Try them out!
+
+ls prints out all the contents of the folder you're in or that you list: 
+gunzip will unzip a file
+cat will print out the contents of an unzipped file
+touch will create a blank text document of the name you give it 
+nano will allow you to edit or create a text document based on the name you give
 
 
 Tools:
