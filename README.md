@@ -6,9 +6,11 @@ Today, I would like for all of us to get a handle on the basics of working and n
 ### Table of Contents
 * [Basics](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#basics)  
 * [Cluster things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)  
-* [Playing with sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#playing-with-sequence-data)
-* [Tools](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#tools)
+* [Assembling sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#assembling-sequence-data)
+* [Querying assembly](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#querying-assembly)
 * [Useful scripts](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#useful-scripts)
+* [Tools](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#tools)
+
 
 ## BASICS
 
@@ -209,7 +211,7 @@ Or you can look at all the jobs running or in line to run:
     sinfo -s
 ```
 
-## PLAYING WITH SEQUENCE DATA
+## ASSEMBLING SEQUENCE DATA
 
 Some of the seuqnece data has been artifically split up into smaller files. Let's combine them before assembly:
 ```
@@ -244,11 +246,13 @@ Run spades
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 20 --merged $x'merged.fq.gz' -s $x'allsinglereadscombined.fq.gz' -o $x'trimmedspades.assembly/'
 ```
 
+## QUERYING ASSEMBLY
+
 ## USEFUL SCRIPTS
 
 Most of these are stolen from my colloborator [Alex Knyshov](https://github.com/AlexKnyshov/main_repo)
 
-### BLAST Parser Script
+#### BLAST Parser Script
 
 Found [here](https://github.com/AlexKnyshov/main_repo/blob/master/blast/mainblparser.py)
 
