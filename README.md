@@ -72,7 +72,7 @@ There are many other commonly used commands in bash, here are some of other most
 
 **pwd** will Print your current Working Directory. 
 
-##### EASTER EGG 
+#### EASTER EGG 
 
 Let's do something so we barely every have to use that **pwd** command. Go up one folder to your home directory: 
 ```
@@ -124,6 +124,48 @@ Now if we type blastn --help we can see how to use this command:
     blastn --help
 ```
 Before loading this module this wouldn't have worked. 
+
+The other more major benefit of the cluster is the ability to use the large amounts of computing resources to speed up complex computing tasks. To use these resources, you must submit a script that specifies certain things in a standard way. Below is an example of the first several lines needed in a script with annotations. 
+
+```
+#!/bin/bash
+#This specifies this script should be read as a bash script as opposed to some other language
+
+#SBATCH --job-name=trinity
+#This is the name given to the job for your own reference later
+
+#SBATCH -N 1
+#This refers to the number of nodes you want for your job. Almost always 1 is appropriate. To expand a job across more than one node, you generally need to incorporate a multi-threading program like MPI and often the amount of speed gained is not worth the effort. This program is hard to use. 
+
+#SBATCH -n 1
+#I don't know what this does....let's look it up....
+
+#SBATCH -c 30
+#This is the number of processors you want for the job. The more you devote the faster the job will run...but sometimes it can be harder to get the resources to run a job if you request too much.  
+
+#SBATCH --mem=200G
+This is the amount of memory you need for the job. Assemblers often require a high amount of memory. 
+
+#SBATCH --partition=general
+#This is the partition you want to submit a job too. They are several partitions where the nodes have a different amount of memory and processors. 
+
+#SBATCH --qos=general
+#This was newly added....not sure exactly why but you need it now
+
+#SBATCH --mail-type=END
+#This says to send you an email when the job is finished.
+
+#SBATCH --mail-user=email@uconn.edu
+#Email address
+
+#SBATCH -o myscript_%j.out
+#This is the file name created from the standard output of the job in the folder in which you ran the script.
+
+#SBATCH -e myscript_%j.err
+#This is the file name created from the standard error of the job in the folder in which you ran the script.
+
+```
+
 ```
     sinfo -s
 ```
