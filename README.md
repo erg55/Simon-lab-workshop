@@ -171,11 +171,12 @@ Create a script named test.sh with the following text using **nano test.sh**:
 
 ```
 #!/bin/bash
-#SBATCH --job-name=trinity
+#SBATCH --job-name=test
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -c 1
 #SBATCH --partition=general
+#SBATCH --qos=general
 #SBATCH --mail-type=END
 #SBATCH --mem=1G
 #SBATCH --mail-user=email@uconn.edu
