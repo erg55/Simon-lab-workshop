@@ -32,7 +32,6 @@ Use head to look into the files you downloaded:
 ```
     head P0075* 
 ```
-Press Control+C to interrupt a command.
 
 Oops they are still zipped, Press Control+C to interrupt a command.
 
