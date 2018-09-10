@@ -1,7 +1,7 @@
 # Simon-lab-workshop
-Learning! 
 
-Today I would like for all of us to get a handle on the basics of working and navigating on the UConn cluster as well as working with NextGen sequencing data and some of the commonly used tools. Maybe today or next week, we will be able to get some of the raw reads assembled and can start working with those files
+
+Today, I would like for all of us to get a handle on the basics of working and navigating on the UConn cluster as well as working with NextGen sequencing data and familiarity with some of the commonly used tools. I think each of us should work on a single dataset at first and then maybe today or next week, we will be able to get some of the raw reads assembled and can start actually doing stuff with those files. 
 
 ## BASICS
 
@@ -58,23 +58,23 @@ So if you just wanted the first line of each our yours files you could run:
 ```
 There are many other commonly used commands in bash, here are some of other most used ones. Try them out!
 
-ls prints out all the contents of the folder you're in or that you list.
+**ls** prints out all the contents of the folder you're in or that you list.
 
-gunzip will unzip a file.
+**gunzip** will unzip a file.
 
-cat, short for concatenate, will print out the contents of an unzipped file.
+**cat**, short for concatenate, will print out the contents of an unzipped file.
 
-du, disk utility, will tell you the size of a file.
+**du**, disk utility, will tell you the size of a file.
 
-touch will create a blank text document of the name you give it.
+**touch** will create a blank text document of the name you give it.
 
-nano will allow you to edit or create a text document based on the name you give.
+**nano** will allow you to edit or create a text document based on the name you give.
 
-pwd will Print your current Working Directory. 
+**pwd** will Print your current Working Directory. 
 
 ##### EASTER EGG 
 
-Let's do something so we barely every have to use that pwd command. Go up one folder to your home directory: 
+Let's do something so we barely every have to use that **pwd** command. Go up one folder to your home directory: 
 ```
     cd ..
 ```
@@ -90,7 +90,7 @@ Create a hidden file called .bash_profile:
 ```
     touch .bash_profile
 ```
-Go into that file with nano:
+Go into that file with **nano**:
 ```
     nano .bash_profile
 ```
@@ -107,15 +107,23 @@ Log out of and then back into the cluster:
 ```
 Now you can see where you are all the time! Neat! 
 
-
-
 ## PLAYING WITH DATA AND CLUSTER THINGS
 
+One of the benefits of using the cluster is that commonly used programs are already installed on it and thus easy to use. To activate the commands associated with these programs use **module load** and the program name. You can use tab to see all the programs available. Try typing:
 
 ```
-    module load
+    module load b
 ```
+And use tab to see all the programs starting with the lowercase letter "b" already installed. Let's activate blast:
 
+```
+    module load blast
+```
+Now if we type blastn --help we can see how to use this command:
+```
+    blastn --help
+```
+Before loading this module this wouldn't have worked. 
 ```
     sinfo -s
 ```
