@@ -63,6 +63,35 @@ touch will create a blank text document of the name you give it.
 
 nano will allow you to edit or create a text document based on the name you give.
 
+pwd will print your current working directory. 
+
+Let's do something so we barely every have to use that command. Go up one folder to your home directory: 
+```
+    cd ..
+```
+or
+```
+    cd ~
+```
+or just
+```
+    cd 
+```
+Create a hidden file called .bash_profile: 
+```
+    touch .bash_profile
+```
+Go into that file with nano:
+```
+    nano .bash_profile
+```
+And paste the following into the file: 
+```
+    export PS1="egordon@xanadu-submit-ext.cam.uchc.edu:  \w:"
+```
+Exit with control+X, then "Y"
+
+
 
 Tools:
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/),
