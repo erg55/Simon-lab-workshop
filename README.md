@@ -61,7 +61,7 @@ ls prints out all the contents of the folder you're in or that you list.
 
 gunzip will unzip a file.
 
-cat will print out the contents of an unzipped file.
+cat, short for concatenate, will print out the contents of an unzipped file.
 
 du, disk utility, will tell you the size of a file.
 
@@ -69,7 +69,7 @@ touch will create a blank text document of the name you give it.
 
 nano will allow you to edit or create a text document based on the name you give.
 
-pwd will print your current working directory. 
+pwd will Print your current Working Directory. 
 
 EASTER EGG 
 
