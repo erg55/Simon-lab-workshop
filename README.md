@@ -44,6 +44,8 @@ Instead you can try use zcat to print the file and then pass it to the head comm
 
 That's what fastq files look like! Neat!
 
+In the future, if you want to work with these files you can point to their path in my folder and work with them the same way as if they were in your current folder. Doing this will make sure we are not wasting too much storage space on the cluster. 
+
 If you want to read more information or look at the options you can use with various shell commans try running the command with the double flag --help:
 
 ```
@@ -107,11 +109,25 @@ Now you can see where you are all the time! Neat!
 /EASTER EGG
 
 
-PLAYING WITH DATA
+PLAYING WITH DATA AND CLUSTER THINGS
+
+
+```
+    module load
+```
+
+```
+    sinfo -s
+```
+
+```
+    sbatch script
+```
 
 
 
 
 Tools:
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/),
+[BLAST](https://www.ncbi.nlm.nih.gov/books/NBK279690/),
 [BBmap](https://sourceforge.net/projects/bbmap/)
