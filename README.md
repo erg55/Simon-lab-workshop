@@ -13,3 +13,14 @@ Next, create a working directory:
 ```
     mkdir ThursdayFun
 ```
+
+
+
+
+
+
+
+
+
+Tools:
+[BBmap](https://sourceforge.net/projects/bbmap/)
