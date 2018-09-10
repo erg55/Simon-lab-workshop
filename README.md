@@ -5,10 +5,9 @@ Today, I would like for all of us to get a handle on the basics of working and n
 
 ### Table of Contents
 [Basics](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#basics)
-
 [Cluster Things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)
-
 [Playing with sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#playing-with-sequence-data)
+
 ## BASICS
 
 Let's start with logging into the cluster: 
