@@ -2,6 +2,8 @@
 Learning! 
 
 
+BASICS
+
 Let's start with logging into the cluster: 
 ```
     ssh USERNAME@xanadu-submit-ext.cam.uchc.edu
@@ -59,11 +61,15 @@ gunzip will unzip a file.
 
 cat will print out the contents of an unzipped file.
 
+du, disk utility, will tell you the size of a file.
+
 touch will create a blank text document of the name you give it.
 
 nano will allow you to edit or create a text document based on the name you give.
 
 pwd will print your current working directory. 
+
+EASTER EGG 
 
 Let's do something so we barely every have to use that command. Go up one folder to your home directory: 
 ```
@@ -96,6 +102,12 @@ Log out of and then back into the cluster:
     exit
     ssh USERNAME@xanadu-submit-ext.cam.uchc.edu
 ```
+Now you can where you are all the time! Neat! 
+
+/EASTER EGG
+
+PLAYING WITH DATA
+
 
 
 
