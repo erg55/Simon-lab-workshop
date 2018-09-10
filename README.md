@@ -5,9 +5,11 @@ Today, I would like for all of us to get a handle on the basics of working and n
 
 ### Table of Contents
 * [Basics](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#basics)  
-* [Cluster Things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)  
+* [Cluster things](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#cluster-things)  
 * [Playing with sequence data](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#playing-with-sequence-data)
 * [Tools](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#tools)
+* [Useful scripts](https://github.com/erg55/Simon-lab-workshop/blob/master/README.md#useful-scripts)
+
 ## BASICS
 
 Let's start with logging into the cluster: 
@@ -242,6 +244,7 @@ Run spades
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 20 --merged $x'merged.fq.gz' -s $x'allsinglereadscombined.fq.gz' -o $x'trimmedspades.assembly/'
 ```
 
+## USEFUL SCRIPTS
 
 
 
