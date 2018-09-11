@@ -295,7 +295,7 @@ Make a script like below named spades.sh (make sure to update your email):
 #SBATCH --mail-user=diler.haji@uconn.edu
 #SBATCH -o myscript_%j.out
 #SBATCH -e myscript_%j.err
-/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 16 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
 ```
 
 Submit it:
