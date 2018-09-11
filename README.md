@@ -309,6 +309,26 @@ Let's stop here today!
 
 ## QUERYING ASSEMBLY
 
+##### BLAST 
+Let's use BLAST to find some target genes. On Genbank find the COI sequence of a cicada and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly: 
+
+```
+blastn -query COI.fasta -db contigs.fasta
+```
+
+```
+blastn -query COI.fasta -db contigs.fasta -outfmt 6 
+```
+
+```
+tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res
+```
+
+
+##### BWA 
+
+
+
 ## USEFUL SCRIPTS
 
 Most of these are stolen from my colloborator [Alex Knyshov](https://github.com/AlexKnyshov/main_repo)
@@ -326,6 +346,10 @@ or
 ```
 wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainblparser.py
 ```
+
+#### Align
+
+#### Alignment viewer 
 
 #### Tools:  
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
