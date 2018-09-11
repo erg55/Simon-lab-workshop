@@ -29,7 +29,7 @@ Navigate into the working directory...try using tab to autocomplete your suggest
 ```
     cd ThursdayFun
 ```
-Now lets copy some data files from my folder (which has had it's permission modified so others can access it) into your current folder...let's try these three samples P0075_CS_I27897_S125, P0075_CS_I27898_S126 and P0075_CS_I27899_S127.
+Now lets copy some data files from my folder (which has had it's permission modified so others can access it) into your current folder...let's try these three samples P0075_CS_I27897_S125, P0075_CS_I27898_S126 and P0075_CS_I27899_S127. Please be courteous in my folder and don't delete anything. 
 ```
     cp /home/CAM/egordon/Dropbox/P0075_CS_I27897_S125_L001_R1_001.fastq.gz .
 ```
@@ -147,7 +147,7 @@ The other more major benefit of the cluster is the ability to use the large amou
 #This refers to the number of nodes you want for your job. Almost always 1 is appropriate. To expand a job across more than one node, you generally need to incorporate a multi-threading program like MPI and often the amount of speed gained is not worth the effort. This program is hard to use. 
 
 #SBATCH -n 1
-#I don't know what this does....let's look it up....
+#This is a useful parameter when using multithreading programs like MPI. Otherwise keep it one. 
 
 #SBATCH -c 30
 #This is the number of processors you want for the job. The more you devote the faster the job will run...but sometimes it can be harder to get the resources to run a job if you request too much.  
@@ -220,7 +220,7 @@ gzip P0075_CS_I27897_S125_L001_R1_001.fastq
 gunzip P0075_CS_I27897_S125_L002_R1_001.fastq.gz
 gzip P0075_CS_I27897_S125_L002_R1_001.fastq
 ```
-Then we can run fastqc on each of the files:
+Then we can run fastqc on each of the files. It is better to do this before combining them since the two lanes may have behaved differently:
 ```
 module load fastqc
 fastqc P0075_CS_I27897_S125_L001_R1_001.fastq.gz
@@ -231,36 +231,56 @@ Download the fastqc file with **rsync**. First open a new terminal window but do
 ```
 rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html .
 ```
+How do the fastq reports look? Pretty pristine for me. Perhaps they have already been trimmed? We shall see. 
 
-Some of the sequnece data is split across two lanes. Let's combine them before assembly:
+The sequence data is split across two lanes. Let's combine each set into the twopaired ends reads before assembly:
 ```
-    cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz >> S125_R1.fastq.gz
-    cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz >> S125_R2.fastq.gz
+    cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz > S125_R1.fastq.gz
+    cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz > S125_R2.fastq.gz
 ```
 
 
 
 Deduplication
+
+For this we can use a tool in bbmap called clumpify. Deduplication makes assembly faster by getting rid of optical or pcr duplicates which don't contribute to coverage. 
 ```
-clumpify.sh in1=$x'R1_001.fastq.gz' in2=$x'R2_001.fastq.gz' out1='dedup'$x'R1.fastq.gz', out2='dedup'$x'R2.fastq.gz' dedupe;
+module load bbmap
+clumpify.sh in1=S125_R1.fastq.gz in2=S125_R2.fastq.gz out1=S125_dedup_R1.fastq.gz out2=S125_dedup_R2.fastq.gz dedupe
 ```
+This may take a little while...about 5 minutes.
+
 Trimming
+
+For this we use Trimmomatic. We will also need to download a file with the sequence of the Illumina adaptor we think was used into our working directory. This command tells trimmomatic to remove any sequences matching Illumina adaptors, remove low quality (< 3 quality score) trailing or leading bases, using a sliding window of 4 bases removing windows where the quality score is less than 20 on average and finally discarding any read less than 50 bp long after all trimming.
 ```
-trimmomatic-0.36.jar PE -phred33 'dedup'$x'R1.fastq.gz,' 'dedup'$x'R2.fastq.gz' $x'_forward_paired.fq.gz' $x'_forward_unpaired.fq.gz' $x'_reverse_paired.fq.gz' $x'_reverse_unpaired.fq.gz' ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50;
+module load Trimmomatic
+cp ../../egordon/metagenomes/files/TruSeq3-PE.fa .
+trimmomatic-0.36.jar PE -phred33 S125_dedup_R1.fastq.gz S125_dedup_R2.fastq.gz S125_forward_paired.fq.gz S125_forward_unpaired.fq.gz S125_reverse_paired.fq.gz S125_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50;
 ```
+This also takes a while. It looks like bases and reads were trimmed. 
+
+
 Merging
+
+Next is merging the paired reads. This can only occur if the insert size was short enough that the two 150 bp reads on either side overlapped. I have been told merging about half is a good percentage.
 ```
-bbmerge.sh in1=$x'_forward_paired.fq.gz' in2=$x'_reverse_paired.fq.gz' out=$x'merged.fq.gz' outu1=$x'unmergedF.fq.gz' outu2=$x'unmergedR.fq.gz'
-```
-Combine all files for spades
-```
-cat $x'unmergedF.fq.gz' $x'unmergedR.fq.gz' $x'_forward_unpaired.fq.gz' $x'_reverse_unpaired.fq.gz' > $x'allsinglereadscombined.fq.gz'
-```
-Run spades
-```
-/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 20 --merged $x'merged.fq.gz' -s $x'allsinglereadscombined.fq.gz' -o $x'trimmedspades.assembly/'
+module load bbmap
+bbmerge.sh in1=S125_forward_paired.fq.gz in2=S125_reverse_paired.fq.gz out=S125_merged.fq.gz' outu1=S125_unmergedF.fq.gz outu2=S125_unmergedR.fq.gz
 ```
 
+Combine all single read files for assembly:
+```
+cat S125_unmergedF.fq.gz S125_unmergedR.fq.gz S125_forward_unpaired.fq.gz S125_reverse_unpaired.fq.gz > S125_allsinglereadscombined.fq.gz
+```
+
+Run SPAdes assembler
+
+Let's first just make sure the syntax is right for this to work. Run the command below specifying only one thread under -t:
+```
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
+```
+If it runs lets try and submit it as a job because it may require time and memory. 
 ## QUERYING ASSEMBLY
 
 ## USEFUL SCRIPTS
