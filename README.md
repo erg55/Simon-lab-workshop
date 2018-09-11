@@ -203,28 +203,33 @@ Use **squeue** to check the status of the job requesting jobs run by only your u
 ```
 Or you can look at all the jobs running or in line to run:
 ```
-    squeue
+squeue
 ```
 
 
 ```
-    sinfo -s
+sinfo -s
 ```
 
 ## ASSEMBLING SEQUENCE DATA
 
-Some of the seuqnece data has been artifically split up into smaller files. Let's combine them before assembly:
+Some of the sequnece data has been artifically split up into smaller files. Let's combine them before assembly:
 ```
-    sinfo -s
+    cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz > S125_R1.fastq.gz
+    cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz > S125_R2.fastq.gz
 ```
 
 ```
-fastqc
+module load fastqc
+fastqc S125_R1.fastq.gz
+fastqc S125_R2.fastq.gz
 ```
-Download the fastqc file
+
+Download the fastqc file with **rsync**:
 ```
-    rsync
+rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html
 ```
+
 Deduplication
 ```
 clumpify.sh in1=$x'R1_001.fastq.gz' in2=$x'R2_001.fastq.gz' out1='dedup'$x'R1.fastq.gz', out2='dedup'$x'R2.fastq.gz' dedupe;
