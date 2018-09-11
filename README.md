@@ -188,7 +188,7 @@ Create a script named test.sh with the following text using **nano test.sh**:
 #SBATCH --qos=general
 #SBATCH --mail-type=END
 #SBATCH --mem=1G
-#SBATCH --mail-user=email@uconn.edu
+#SBATCH --mail-user=diler.haji@uconn.edu
 #SBATCH -o myscript_%j.out
 #SBATCH -e myscript_%j.err
 echo "Hello World!"
@@ -281,7 +281,7 @@ Let's first just make sure the syntax is right for this to work. Run the command
 ```
 If it looks like it's running correctly, stop it with control+C and lets try and submit it as a job because it may require some time and more memory than available on the head node. Generally you shouldn't run a bunch heavy tasks on this node. 
 
-Make a script like below named spades.sh:
+Make a script like below named spades.sh (make sure to update your email):
 ```
 #!/bin/bash
 #SBATCH --job-name=spades
@@ -292,7 +292,7 @@ Make a script like below named spades.sh:
 #SBATCH --qos=general
 #SBATCH --mail-type=END
 #SBATCH --mem=100G
-#SBATCH --mail-user=email@uconn.edu
+#SBATCH --mail-user=diler.haji@uconn.edu
 #SBATCH -o myscript_%j.out
 #SBATCH -e myscript_%j.err
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
@@ -303,9 +303,10 @@ Submit it:
 sbatch spades.sh 
 ```
 
-You can check progress on the spades.log file in the assembly folder or in the .out file
 
-Let's stop here today!
+You can check progress on the spades.log file in the assembly folder or in the .out file. SPAdes first implements a read error correction tool before it starts to assemble based on a set of increasing k-mer sizes. 
+
+Let's stop here today as we wait for our assembly to finish!
 
 ## QUERYING ASSEMBLY
 
