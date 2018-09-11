@@ -308,6 +308,27 @@ You can check progress on the spades.log file in the assembly folder or in the .
 
 Let's stop here today as we wait for our assembly to finish!
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# WEEK II
 ## QUERYING ASSEMBLY
 
 ##### BLAST 
