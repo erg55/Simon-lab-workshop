@@ -213,7 +213,7 @@ sinfo -s
 
 ## ASSEMBLING SEQUENCE DATA
 
-For reasons that I cannnot determine, these gz compressed files are not compatible with fastqc as they are. First we should **gunzip** them and then to save space **gzip** again. After that they work. Mysterious. 
+For reasons that I cannnot determine, these gz compressed files are not compatible with fastqc as they are. First we should **gunzip** them and then to save space **gzip** again. After that they work. Mysterious. Remember to work with the dataset you picked and change the files names below as appriopriate.
 ```
 gunzip P0075_CS_I27897_S125_L001_R1_001.fastq.gz
 gzip P0075_CS_I27897_S125_L001_R1_001.fastq
@@ -280,7 +280,33 @@ Let's first just make sure the syntax is right for this to work. Run the command
 ```
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
 ```
-If it runs lets try and submit it as a job because it may require time and memory. 
+If it looks like it's running correctly, stop it with control+C and lets try and submit it as a job because it may require some time and more memory than available on the head node. Generally you shouldn't run a bunch heavy tasks on this node. 
+
+Make a script like below named spades.sh:
+```
+#!/bin/bash
+#SBATCH --job-name=spades
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -c 16
+#SBATCH --partition=general
+#SBATCH --qos=general
+#SBATCH --mail-type=END
+#SBATCH --mem=100G
+#SBATCH --mail-user=email@uconn.edu
+#SBATCH -o myscript_%j.out
+#SBATCH -e myscript_%j.err
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
+```
+
+Submit it:
+```
+sbatch spades.sh 
+```
+
+You can check progress on the spades.log file in the assembly folder or in the .out file
+
+Let's stop here today!
 ## QUERYING ASSEMBLY
 
 ## USEFUL SCRIPTS
