@@ -212,6 +212,7 @@ sinfo -s
 ```
 
 ## ASSEMBLING SEQUENCE DATA
+##### Assess quality with fastqc
 
 For reasons that I cannnot determine, these gz compressed files are not compatible with fastqc as they are. First we should **gunzip** them and then to save space **gzip** again. After that they work. Mysterious. Remember to work with the dataset you picked and change the files names below as appriopriate.
 ```
@@ -231,7 +232,7 @@ Download the fastqc file with **rsync**. First open a new terminal window but do
 ```
 rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html .
 ```
-How do the fastq reports look? Pretty pristine for me. Perhaps they have already been trimmed? We shall see. 
+How do the fastqc reports look? Pretty pristine for me. Perhaps they have already been trimmed? We shall see. 
 
 The sequence data is split across two lanes. Let's combine each set into the twopaired ends reads before assembly:
 ```
@@ -239,9 +240,7 @@ The sequence data is split across two lanes. Let's combine each set into the two
     cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz > S125_R2.fastq.gz
 ```
 
-
-
-Deduplication
+##### Deduplication
 
 For this we can use a tool in bbmap called clumpify. Deduplication makes assembly faster by getting rid of optical or pcr duplicates which don't contribute to coverage. 
 ```
@@ -250,7 +249,7 @@ clumpify.sh in1=S125_R1.fastq.gz in2=S125_R2.fastq.gz out1=S125_dedup_R1.fastq.g
 ```
 This may take a little while...about 5 minutes.
 
-Trimming
+##### Trimming
 
 For this we use Trimmomatic. We will also need to download a file with the sequence of the Illumina adaptor we think was used into our working directory. This command tells trimmomatic to remove any sequences matching Illumina adaptors, remove low quality (< 3 quality score) trailing or leading bases, using a sliding window of 4 bases removing windows where the quality score is less than 20 on average and finally discarding any read less than 50 bp long after all trimming.
 ```
@@ -261,7 +260,7 @@ trimmomatic-0.36.jar PE -phred33 S125_dedup_R1.fastq.gz S125_dedup_R2.fastq.gz S
 This also takes a while. It looks like bases and reads were trimmed. 
 
 
-Merging
+##### Merging
 
 Next is merging the paired reads. This can only occur if the insert size was short enough that the two 150 bp reads on either side overlapped. I have been told merging about half is a good percentage.
 ```
@@ -274,7 +273,7 @@ Combine all single read files for assembly:
 cat S125_unmergedF.fq.gz S125_unmergedR.fq.gz S125_forward_unpaired.fq.gz S125_reverse_unpaired.fq.gz > S125_allsinglereadscombined.fq.gz
 ```
 
-Run SPAdes assembler
+##### Run SPAdes assembler
 
 Let's first just make sure the syntax is right for this to work. Run the command below specifying only one thread under -t:
 ```
@@ -307,6 +306,7 @@ sbatch spades.sh
 You can check progress on the spades.log file in the assembly folder or in the .out file
 
 Let's stop here today!
+
 ## QUERYING ASSEMBLY
 
 ## USEFUL SCRIPTS
