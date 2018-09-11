@@ -213,10 +213,10 @@ sinfo -s
 
 ## ASSEMBLING SEQUENCE DATA
 
-Some of the sequnece data has been artifically split up into smaller files. Let's combine them before assembly:
+Some of the sequnece datais split across multiple lanes. Let's combine them before assembly:
 ```
-    cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz > S125_R1.fastq.gz
-    cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz > S125_R2.fastq.gz
+    cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz >> S125_R1.fastq.gz
+    cat P0075_CS_I27897_S125_L001_R2_001.fastq.gz P0075_CS_I27897_S125_L002_R2_001.fastq.gz >> S125_R2.fastq.gz
 ```
 
 ```
@@ -225,9 +225,9 @@ fastqc S125_R1.fastq.gz
 fastqc S125_R2.fastq.gz
 ```
 
-Download the fastqc file with **rsync**:
+Download the fastqc file with **rsync**. First open a new terminal window but don't log onto the cluster. Navigate to the folder you want this file to download in and run this command:
 ```
-rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html
+rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html .
 ```
 
 Deduplication
