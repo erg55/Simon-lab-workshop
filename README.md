@@ -354,7 +354,32 @@ Where you able to find a matching contig? To check you can query the contig usin
 grep -A N CONTIGNAME contigs.fasta
 ```
 
+tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res
+module load python/2.7.8
+python ~/ericblparser.py mito.res . 1
+module load bwa
+bwa index result.fas
+bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 result.fas ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
+module load samtools
+samtools view -b -F 4 bwafile > mapped.bam
+samtools fastq mapped.bam > mapped.fastq
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
+
+can download mapped reads and map in Geneious
+
+nano Seed.fasta
+cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 ##### BWA 
+
+##### Geneious
+
+##### MITObim
+
+
+
+# WEEK III
+## PHYLOGENOMICS
 
 
 
@@ -388,4 +413,5 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [Spades](http://spades.bioinf.spbau.ru/release3.9.0/manual.html)  
 [BWA](http://bio-bwa.sourceforge.net/bwa.shtml)  
 [SeqTK](https://github.com/lh3/seqtk)  
+[MITObim](https://github.com/chrishah/MITObim)
 
