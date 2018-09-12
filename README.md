@@ -345,10 +345,10 @@ blastn -query COI.fasta -db contigs.fasta -outfmt 6
 ```
 
 ```
-tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res
+tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res -evalue 1e-50
 ```
 
-Where you able to find a matching contig? To check you can query the contig using grep and request N number of lines after it to get the full sequence:
+Where you able to find a matching contig? To check you can query the contig using grep and request N number of lines after it to print out the full sequence:
 
 ```
 grep -A N CONTIGNAME contigs.fasta
