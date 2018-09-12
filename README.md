@@ -360,12 +360,14 @@ python ~/ericblparser.py mito.res . 1
 module load bwa
 bwa index result.fas
 bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 result.fas ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
+
+t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
 samtools fastq mapped.bam > mapped.fastq
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
 
-can download mapped reads and map in Geneious
+can download mapped reads (fastq) and map in Geneious
 
 nano Seed.fasta
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
