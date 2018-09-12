@@ -306,7 +306,7 @@ sbatch spades.sh
 
 You can check progress on the spades.log file in the assembly folder or in the .out file. SPAdes first implements a read error correction tool before it starts to assemble based on a set of increasing k-mer sizes. 
 
-Let's stop here today as we wait for our assembly to finish!
+Let's stop here today as we wait for our assembly to finish (should take about a half hour!
 
 
 
@@ -332,9 +332,11 @@ Let's stop here today as we wait for our assembly to finish!
 ## QUERYING ASSEMBLY
 
 ##### BLAST 
-Let's use BLAST to find some target genes. On Genbank find the COI sequence of a cicada and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly: 
+Let's use BLAST to find some target genes. On Genbank find the [COI sequence of a cicada](https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI) and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly: 
 
 ```
+module load blast
+makeblastdb -in contigs.fasta -dbtype nucl
 blastn -query COI.fasta -db contigs.fasta
 ```
 
@@ -346,6 +348,11 @@ blastn -query COI.fasta -db contigs.fasta -outfmt 6
 tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res
 ```
 
+Where you able to find a matching contig? To check you can query the contig using grep and request N number of lines after it to get the full sequence:
+
+```
+grep -A N CONTIGNAME contigs.fasta
+```
 
 ##### BWA 
 
