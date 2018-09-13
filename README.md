@@ -229,6 +229,14 @@ Download the fastqc file with **rsync**. First open a new terminal window but do
 ```
 rsync --progress USERNAME@xanadu-submit-ext.cam.uchc.edu:~/ThursdayFun/*.html .
 ```
+
+##### For Windows
+Open the folder containing the file you want to upload, open windows powershell or equivalent to type prompt and pscp
+
+```
+pscp username@biocluster.ucr.edu:clusterdirectory/testfolder/ local_folder_name\ 
+```
+
 How do the fastqc reports look? Pretty pristine for me. Perhaps they have already been trimmed? We shall see. 
 
 The sequence data is split across two lanes. Let's combine each set into the twopaired ends reads before assembly:
