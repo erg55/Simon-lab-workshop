@@ -38,7 +38,7 @@ Now lets copy some data files from my folder (which has had it's permission modi
 ```
 You could also use the wildcard to match anything and copy all matching files at once. 
 ```
-    cp /home/CAM/egordon/Dropbox/P0075_CS_I27897_S125_L001* .
+    cp /home/CAM/egordon/Dropbox/P0075_CS_I27897_S125_L00* .
 ```
 Use head to look into the files you downloaded:
 ```
