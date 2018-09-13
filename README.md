@@ -378,6 +378,9 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 
 ##### MITObim
 
+##### Seqtk
+
+seqtk seq -a in.fastq.gz > out.fasta
 
 
 # WEEK III
@@ -417,4 +420,5 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [BWA](http://bio-bwa.sourceforge.net/bwa.shtml)  
 [SeqTK](https://github.com/lh3/seqtk)  
 [MITObim](https://github.com/chrishah/MITObim)
+[Bandage]()
 
