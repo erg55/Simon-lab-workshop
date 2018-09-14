@@ -7,7 +7,7 @@ USe **wget** to download the files
 ``` 
 wget 
 ```
-Or you can use ***git clone*** to dowload a whole github repository.
+Or you can use **git clone** to dowload a whole github repository.
 
 Play around with **cut, sort, uniq** to manipulate the files. Remember you can use \> to write the output to a new file.
 
