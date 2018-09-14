@@ -13,6 +13,8 @@ Or you can use **git clone** to download a whole github repository.
 module load git
 git clone https://github.com/erg55/Simon-lab-workshop.git
 ``` 
+#### Ok let's start with Darwin:
+
 Use the command **grep** to search through a file.
 
 #### 1. How many times does the word evolve appear? Galapagos? Beetle?
