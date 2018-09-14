@@ -10,7 +10,7 @@ sort
 
 uniq
 
->
+\>
 
 grep
 
