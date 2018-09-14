@@ -28,10 +28,10 @@ Play around with **cut, sort, uniq** to manipulate the files. Remember you can u
 
 The following command will add the number of characters contained in a line the beginning of the line
 ``` 
-awk '{ print length, $0 }' infile 
+awk '{ print length, $0 }' file 
 ``` 
 
-#### Using this can you tell me the longest word that appears in the origin of species?
+#### Using this can you tell me the longest two words that appears in the origin of species?
 
 
 diff
