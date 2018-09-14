@@ -239,6 +239,16 @@ pscp username@biocluster.ucr.edu:clusterdirectory/testfolder/ local_folder_name\
 
 How do the fastqc reports look? Pretty pristine for me. Perhaps they have already been trimmed? We shall see. 
 
+
+
+#### Homework week I
+
+See here
+
+### Week II 
+
+
+
 The sequence data is split across two lanes. Let's combine each set into the twopaired ends reads before assembly:
 ```
     cat P0075_CS_I27897_S125_L001_R1_001.fastq.gz P0075_CS_I27897_S125_L002_R1_001.fastq.gz > S125_R1.fastq.gz
