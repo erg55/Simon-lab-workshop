@@ -5,12 +5,13 @@ We are going to use various shell command sto manipulate two text files that cor
 Use **wget** to download the files
 
 ``` 
-wget 
+wget https://raw.githubusercontent.com/erg55/Simon-lab-workshop/master/homework/FOBwordtable.csv
 ```
 Or you can use **git clone** to download a whole github repository.
 
-
-
+``` 
+git clone
+``` 
 Use the command **grep** to search through a file.
 
 #### How many times does the word evolve appear? Galapagos? Beetle?
