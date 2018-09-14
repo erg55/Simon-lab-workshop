@@ -1,5 +1,8 @@
 Shell commands
 
+wget
+
+git clone
 
 cut
 
