@@ -1,6 +1,6 @@
 Shell commands
 
-We are going to use various shell commands to manipulate two text files that correspond to the word counts of the Origin of Species and all the lyrics Fall Out Boy's From Under the Cork Tree. This should allow use to answer various questions!  
+We are going to use various shell commands to manipulate two text files that correspond to the word counts of the Origin of Species and all the lyrics Fall Out Boy's From Under the Cork Tree. This should allow us to answer various bizarre questions!  
 
 Use **wget** to download the files
 
@@ -30,8 +30,12 @@ The following command will add the number of characters contained in a line the 
 ``` 
 awk '{ print length, $0 }' file 
 ``` 
+#### Using this can you tell me the longest two words that appears in the Origin of Species?
 
-#### Using this can you tell me the longest two words that appears in the origin of species?
+Let's use the **diff** command to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding. 
+
+#### What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
 
 
-diff
+
+Loop.
