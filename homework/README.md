@@ -1,6 +1,6 @@
 Shell commands
 
-We are going to use various shell command sto manipulate two text files that correspond to the word counts of the Origin of Species and Fall Out Boy's From Under the Cork Tree. This should allow use to answer various questions!  
+We are going to use various shell commands to manipulate two text files that correspond to the word counts of the Origin of Species and all the lyrics Fall Out Boy's From Under the Cork Tree. This should allow use to answer various questions!  
 
 Use **wget** to download the files
 
