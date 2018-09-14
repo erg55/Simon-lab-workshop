@@ -37,15 +37,15 @@ Play around with **cut, sort, uniq** to manipulate the files. Remember you can u
 
 
 
-The following command will add the number of characters contained in a line the beginning of the line
+The following command will add the number of characters contained in a line to the beginning of the line for a given file.
 ``` 
 awk '{ print length, $0 }' file 
 ``` 
-#### 4. Using this can you tell me the longest two words that appears in the Origin of Species?
+#### 4. Using this, can you tell me the longest two words that appears in the Origin of Species?
 
 
 
-Let's use the **diff** command to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding. 
+Let's use the **diff** command to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding. **diff inverse** will output only the matching columns.
 
 #### 5. What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
 
