@@ -10,6 +10,8 @@ sort
 
 uniq
 
+>
+
 grep
 
 diff
