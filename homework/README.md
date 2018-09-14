@@ -10,7 +10,8 @@ wget https://raw.githubusercontent.com/erg55/Simon-lab-workshop/master/homework/
 Or you can use **git clone** to download a whole github repository.
 
 ``` 
-git clone
+module load git
+git clone https://github.com/erg55/Simon-lab-workshop.git
 ``` 
 Use the command **grep** to search through a file.
 
