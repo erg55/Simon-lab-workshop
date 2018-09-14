@@ -21,9 +21,9 @@ Use the command **grep** to search through a file.
 
 Remember **head** can be modified to give the N first lines of a file. That can be piped to tail. 
 #### What's the 248th most common word?
-
-
-
+>
+>
+>
 Play around with **cut, sort, uniq** to manipulate the files. Remember you can use \> to write the output to a new file.
 
 #### 2. What is alphabetically the first word used? The last word? 
