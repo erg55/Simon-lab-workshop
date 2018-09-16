@@ -15,11 +15,11 @@ Or you can use **git clone** to download a whole github repository.
 module load git
 git clone https://github.com/erg55/Simon-lab-workshop.git
 ``` 
-#### Ok let's start with Darwin:
+#### Ok let's start with Darwin's words:
 
 Use the command **grep** to search through a file.
 
-#### 1. How many times does the word evolve appear? Galapagos? Beetle?
+#### 1. How many times does the word "evolve" appear? "Galapagos"? "Beetle"?
 
 
 
@@ -47,12 +47,21 @@ awk '{ print length, $0 }' file
 
 
 
+Let's do a really simple loop to sum up every word. Some thing like:
+
+``` 
+c=0
+for x in FOBwordtable.csv;
+  do c += $x;
+  done
+``` 
+
+##### 5. How many words in the origin of species?
+
 Let's use the **diff** command to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding. **diff inverse** will output only the matching columns.
 
-#### 5. What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
+#### 6. What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
 
 
 
 
-
-Loop.
