@@ -17,7 +17,7 @@ git clone https://github.com/erg55/Simon-lab-workshop.git
 ``` 
 #### Ok let's start with Darwin's words:
 
-Use the command **grep** to search through a file.
+Use the command **grep** to search through a file. **wc** may be helpful too.. 
 
 #### 1. How many times does the word "evolve" appear? "Galapagos"? "Beetle"? How about words with "evol" in them?
 
@@ -58,10 +58,11 @@ for x in FOBwordtable.csv;
 
 ##### 5. How many words in the origin of species?
 
-Let's use the **diff** command to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding. **diff inverse** will output only the matching columns.
+Let's use the **diff** and **comm** commands to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding.
 
 #### 6. What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
 
 
-
+# BONUS
+#### 7. What's the 10th common word in the lyrics that also appears in the Origin of Species? Vice versa? 
 
