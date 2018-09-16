@@ -2,7 +2,7 @@
 
 We are going to use various shell commands to manipulate two text files that correspond to the word counts of the Origin of Species and all the lyrics Fall Out Boy's From Under the Cork Tree. This should allow us to answer various bizarre questions!  
 
-I am going to be unintentionally somewhat vague....remember you can use the --help flag for most commands to help learn more. Also google is always helpful. Let me know if you get stuck! 
+I am going to be unintentionally somewhat vague....remember you can use the --help flag for most commands to help learn more. Also google is always helpful. Let me know if you get stuck! The bonus questions are pretty challenging to answer with shell commands alone and no scripts. Good luck!
 
 Use **wget** to download the files
 
