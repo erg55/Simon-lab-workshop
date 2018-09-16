@@ -24,18 +24,18 @@ Use the command **grep** to search through a file. **wc** may be helpful too..
 
 
 Remember **head** can be modified to give the N first lines of a file. That can be piped to tail. 
-#### What's the 248th most common word?
+#### 2. What's the 248th most common word?
 
 
 
 
 Play around with **cut, sort, uniq** to manipulate the files. Remember you can use \> to write the output to a new file.
 
-#### 2. What is alphabetically the first word used? The last word? 
+#### 3. What is alphabetically the first word used? The last word? 
 
 
 
-#### 3. Use uniq -c on the first column to create a histogram of word usage counts. How many words are used only once? 
+#### 4. Use uniq -c on the first column to create a histogram of word usage counts. How many words are used only once? 
 
 
 
@@ -43,20 +43,9 @@ The following command will add the number of characters contained in a line to t
 ``` 
 awk '{ print length, $0 }' file 
 ``` 
-#### 4. Using this, can you tell me the longest two words that appears in the Origin of Species?
+#### 5. Using this, can you tell me the longest two words that appears in the Origin of Species?
 
 
-
-Let's do a really simple loop to sum up every word. Some thing like:
-
-``` 
-c=0
-for x in FOBwordtable.csv;
-  do c += $x;
-  done
-``` 
-
-##### 5. How many words in the origin of species?
 
 Let's use the **diff** and **comm** commands to compare the two word lists. We first should only work with the word column so cut that for each file before proceeding.
 
@@ -64,5 +53,10 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 
 
 # BONUS
-#### 7. What's the 10th common word in the lyrics that also appears in the Origin of Species? Vice versa? 
+
+
+##### 7. How many words in the origin of species?
+
+
+##### 8. What's the 10th common word in the lyrics that also appears in the Origin of Species? Vice versa? 
 
