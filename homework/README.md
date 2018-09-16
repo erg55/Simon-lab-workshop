@@ -19,7 +19,7 @@ git clone https://github.com/erg55/Simon-lab-workshop.git
 
 Use the command **grep** to search through a file.
 
-#### 1. How many times does the word "evolve" appear? "Galapagos"? "Beetle"?
+#### 1. How many times does the word "evolve" appear? "Galapagos"? "Beetle"? How about words with "evol" in them?
 
 
 
