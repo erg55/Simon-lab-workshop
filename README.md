@@ -280,7 +280,7 @@ This also takes a while. It looks like bases and reads were trimmed.
 Next is merging the paired reads. This can only occur if the insert size was short enough that the two 150 bp reads on either side overlapped. I have been told merging about half is a good percentage.
 ```
 module load bbmap
-bbmerge.sh in1=S125_forward_paired.fq.gz in2=S125_reverse_paired.fq.gz out=S125_merged.fq.gz' outu1=S125_unmergedF.fq.gz outu2=S125_unmergedR.fq.gz
+bbmerge.sh in1=S125_forward_paired.fq.gz in2=S125_reverse_paired.fq.gz out=S125_merged.fq.gz outu1=S125_unmergedF.fq.gz outu2=S125_unmergedR.fq.gz
 ```
 
 Combine all single read files for assembly:
