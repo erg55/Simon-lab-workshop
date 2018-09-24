@@ -82,7 +82,7 @@ Run fastqc on these files.
 
 ##### 1. Were any problems noted by fastqc? 
 
-Go through all the other steps of assembly. You may need to create and submit sbatch scripts for this to finish within a reasonable time. 
+Go through all the other steps of assembly. You may need to create and submit sbatch scripts for this to finish within a reasonable time. You can try and combine all steps into one script or split them up into several. Frequently, you may encounter a small error in one step that prevents the completion of another. 
 
 ##### 2. What is the N50 of this assembly? What is the longest contig and what organism does it most likely originate from? 
 
