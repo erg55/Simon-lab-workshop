@@ -82,12 +82,15 @@ Run fastqc on these files.
 
 ##### 1. Were any problems noted by fastqc? 
 
-Go through all the other steps of assembly. You make need to create and submit sbatch scripts for this to finish within a reasonable time. 
+Go through all the other steps of assembly. You may need to create and submit sbatch scripts for this to finish within a reasonable time. 
 
 ##### 2. What is the N50 of this assembly? What is the longest contig and what organism does it most likely originate from? 
 
 
-##### 3. Can you recover the COI sequence of this cicada from this assembly? Are you able to identify any bacteria present? 
+##### 3. What is the average %GC content?
+
+
+##### 4. Can you recover the COI sequence of this cicada from this assembly? Are you able to identify any bacteria present? 
 
 
 
