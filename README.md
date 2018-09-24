@@ -331,25 +331,6 @@ Let's stop here today as we wait for our assembly to finish (should take about a
 
 
 
-##### Homework
-
-Let's try and download some data from the [Short Read Archive](https://www.ncbi.nlm.nih.gov/sra/?term=Cicadidae) on GenBank. 
-
-```
-module load sratoolkit
-fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRR7014898
-```
-
-Run fastqc on these files. 
-
-Any problems? 
-
-
-
-
-
-
-
 
 
 
