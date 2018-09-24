@@ -334,7 +334,11 @@ Let's stop here today as we wait for our assembly to finish (should take about a
 
 
 
-# WEEK II
+# WEEK III
+
+##### QUAST
+
+http://bioinf.spbau.ru/en/quast
 ## QUERYING ASSEMBLY
 
 ##### BLAST 
@@ -389,7 +393,7 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 seqtk seq -a in.fastq.gz > out.fasta
 
 
-# WEEK III
+# WEEK V
 ## PHYLOGENOMICS
 
 
@@ -423,6 +427,7 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [BBmap](https://sourceforge.net/projects/bbmap/)  
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)  
 [Spades](http://spades.bioinf.spbau.ru/release3.9.0/manual.html)  
+[QUAST](http://bioinf.spbau.ru/en/quast)
 [BWA](http://bio-bwa.sourceforge.net/bwa.shtml)  
 [SeqTK](https://github.com/lh3/seqtk)  
 [MITObim](https://github.com/chrishah/MITObim)  
