@@ -1,3 +1,5 @@
+#Homework I
+
 ### Shell commands
 
 We are going to use various shell commands to manipulate two text files that correspond to the word counts of the Origin of Species and all the lyrics Fall Out Boy's From Under the Cork Tree. This should allow us to answer various bizarre questions!  
@@ -59,4 +61,34 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 
 
 ##### 8. What's the 10th common word in the lyrics that also appears in the Origin of Species? Vice versa? 
+
+
+
+
+
+
+
+
+#Homework II 
+
+Let's try and download some data from the [Short Read Archive](https://www.ncbi.nlm.nih.gov/sra/?term=Cicadidae) on GenBank. 
+
+```
+module load sratoolkit
+fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRR7014898
+```
+
+Run fastqc on these files. 
+
+##### 1. Were any problems noted by fastqc? 
+
+Go through all the other steps of assembly. You make need to create and submit sbatch scripts for this to finish within a reasonable time. 
+
+##### 2. What is the N50 of this assembly? What is the longest contig and what organism does it most likely originate from? 
+
+
+##### 3. Can you recover the COI sequence of this cicada from this assembly? Are you able to identify any bacteria present? 
+
+
+
 
