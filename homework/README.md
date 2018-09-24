@@ -1,4 +1,4 @@
-#Homework I
+# Homework I
 
 ### Shell commands
 
@@ -54,7 +54,7 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 #### 6. What's the 50th word alphabetically that is in both the Origin of Species and the lyrics? 
 
 
-# BONUS
+## BONUS
 
 
 ##### 7. How many words in the origin of species?.....
@@ -69,7 +69,7 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 
 
 
-#Homework II 
+# Homework II 
 
 Let's try and download some data from the [Short Read Archive](https://www.ncbi.nlm.nih.gov/sra/?term=Cicadidae) on GenBank. 
 
