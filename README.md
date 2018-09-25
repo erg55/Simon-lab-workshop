@@ -241,9 +241,6 @@ How do the fastqc reports look? Pretty pristine for me. Perhaps they have alread
 
 
 
-#### Homework week I
-
-See here
 
 ### Week II 
 
@@ -337,6 +334,12 @@ Let's stop here today as we wait for our assembly to finish (should take about a
 # WEEK III
 
 ##### QUAST
+We can use a program to get some basic assembly stats. This can be useful comparing the effectiveness of various programs or parameters. 
+```
+module load quast
+quast.py contigs.fasta
+```
+
 
 http://bioinf.spbau.ru/en/quast
 ## QUERYING ASSEMBLY
