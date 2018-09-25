@@ -333,7 +333,10 @@ Let's stop here today as we wait for our assembly to finish (should take about a
 
 # WEEK III
 
+## ASSESSING AND QUERYING ASSEMBLY
+
 ##### QUAST
+
 We can use a program to get some basic assembly stats. This can be useful comparing the effectiveness of various programs or parameters. 
 ```
 module load quast
@@ -341,59 +344,77 @@ quast.py contigs.fasta
 ```
 
 
-http://bioinf.spbau.ru/en/quast
-## QUERYING ASSEMBLY
 
 ##### BLAST 
-Let's use BLAST to find some target genes. On Genbank find the [COI sequence of a cicada](https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI) and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly: 
+
+Let's use BLAST to find some target genes. On Genbank find the [COI sequence of a cicada](https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI) and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly after making our assembly into a nucleotide BLAST database: 
 
 ```
 module load blast
 makeblastdb -in contigs.fasta -dbtype nucl
 blastn -query COI.fasta -db contigs.fasta
 ```
-
+Not a great format for automating. Try this next:
 ```
 blastn -query COI.fasta -db contigs.fasta -outfmt 6 
 ```
-
+You can also add an evalue cutoff and output it into a file next:
 ```
 tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res -evalue 1e-50
 ```
 
-Where you able to find a matching contig? To check you can query the contig using grep and request N number of lines after it to print out the full sequence:
+Where you able to find (a) matching contig(s)? To check you can query the contig using grep and request N number of lines after it to print out the full sequence:
 
 ```
 grep -A N CONTIGNAME contigs.fasta
 ```
 
+You can blast this online against the nr database in order to better confirm what exactly it is. 
+
+Ok lets try and find the whole mitochondrion. Copy the file from my folder.
+
+```
+cp xx
 tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res
+```
+
 module load python/2.7.8
 python ~/ericblparser.py mito.res . 1
+
+##### BWA 
+
+
 module load bwa
 bwa index result.fas
 bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 result.fas ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
 
 t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
+##### SAMTOOLS
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
 samtools fastq mapped.bam > mapped.fastq
-/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
+
+
+##### Geneious
+
 
 can download mapped reads (fastq) and map in Geneious
+
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
+
+##### MITObim
 
 nano Seed.fasta
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 ~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
-##### BWA 
 
-##### Geneious
-
-##### MITObim
 
 ##### Seqtk
 
 seqtk seq -a in.fastq.gz > out.fasta
+
+
+
 
 
 # WEEK V
