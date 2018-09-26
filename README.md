@@ -379,43 +379,70 @@ tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res 
 ```
 Hmm looks like several contigs? It would be tedious to pull them all out using grep. Lets' try this custom script that outputs them into a result.fas file. You can also specify a stricter evalue cutoff if you need to. 
 
-
+```
 module load python/2.7.8
-python ~/ericblparser.py mito.res . 1
+python ~/scripts/ericblparserspades.py mito.res . 1
+```
+
+Rename the result.fas file to mito.contigs:
+
+```
+mv result.fas mito.contigs
+```
+
 
 ##### BWA 
-
-
+Alright, lets see if we can assemble the mitochondrial genome better. What we can try is mapping the reads back to our assembled contigs which may allow us to extend the edges. We can use this with a read mapper like BWA or MIRA. Let's try BWA first mapping the deduplicated reads back.
+```
 module load bwa
-bwa index result.fas
-bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 result.fas ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
+bwa index mito.contigs
+bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
+```
 
 t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
 
 ##### SAMTOOLS
+We can use samtools to only view the mapped reads and then pull those reads out specifcally.
+```
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
 samtools fastq mapped.bam > mapped.fastq
+```
+
+Then we can try to create an assembly for those reads only:
+
+```
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
+```
+
+##### Bandage
+
+This should go very quickly...then we can view the assembly graph in Bandage.
 
 
 ##### Geneious
 
+Then we can download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious.
 
-can download mapped reads (fastq) and map in Geneious
 
-/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
-
-##### MITObim
-
-nano Seed.fasta
-cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
-~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 
 
 ##### Seqtk
 module load seqtk
 seqtk seq -a in.fastq.gz > out.fasta
 
+
+
+##### MITObim
+
+Another strategy we can try is an iterative read mapper like MITObim which uses Mira:
+
+```
+nano Seed.fasta
+cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+module load mira
+~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
+```
 
 
 <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
