@@ -412,12 +412,12 @@ samtools fastq mapped.bam > mapped.fastq
 Then we can try to create an assembly for those reads only:
 
 ```
-/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 --12 mapped.fastq -o mito.spades.assembly/
+/home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 2 -s mapped.fastq -o mito.spades.assembly/
 ```
 
 ##### Bandage
 
-This should go very quickly...then we can view the assembly graph in Bandage.
+This should go very quickly...then we can view the assembly graph (.gfa file) in Bandage. Download it with rsync or copy and paste it locally. 
 
 
 ##### Geneious
