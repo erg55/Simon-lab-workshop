@@ -391,6 +391,7 @@ bwa index result.fas
 bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 result.fas ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
 
 t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
+
 ##### SAMTOOLS
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
@@ -412,9 +413,44 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 
 
 ##### Seqtk
-
+module load seqtk
 seqtk seq -a in.fastq.gz > out.fasta
 
+
+
+<img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
+
+You can also include things in the .bash_profile file that you want to run everytime you log onto the cluster. For examle you can paste module load blast into this file as well as various other commonly used programs. 
+
+This is also where you can set up aliases for running a command with a short cut. 
+
+```
+alias [alias_name]="[command_to_alias]"
+```
+
+```
+alias ll="ls -lhaG"
+alias h='history'
+alias du='du -bh'
+```
+You can check which aliases are active by typing in alias.
+
+My .bash_profile file now looks like this. 
+
+```
+export PS1="egordon@xanadu-submit-ext.cam.uchc.edu:  \w:"
+alias ll="ls -lhaG"
+alias h='history'
+alias du='du -bh'
+module load blast
+module load bwa
+module load samtools
+module load python/2.7.8
+module load seqtk
+module load quast
+module load Trimmomatic
+module load bbmap
+```
 
 
 
