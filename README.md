@@ -402,7 +402,7 @@ bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S
 t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
 
 ##### SAMTOOLS
-We can use samtools to only view the mapped reads and then pull those reads out specifcally.
+We can use samtools to only view the mapped reads and then pull those reads out specifically.
 ```
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
