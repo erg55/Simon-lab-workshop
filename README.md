@@ -354,7 +354,7 @@ module load blast
 makeblastdb -in contigs.fasta -dbtype nucl
 blastn -query COI.fasta -db contigs.fasta
 ```
-Not a great format for automating. Try this next:
+Not a great format for automating things. Try this next:
 ```
 blastn -query COI.fasta -db contigs.fasta -outfmt 6 
 ```
@@ -369,14 +369,16 @@ Where you able to find (a) matching contig(s)? To check you can query the contig
 grep -A N CONTIGNAME contigs.fasta
 ```
 
-You can blast this online against the nr database in order to better confirm what exactly it is. 
+You can blast this online against the (nr database)[https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome] in order to better confirm what exactly it is. 
 
-Ok lets try and find the whole mitochondrion. Copy the file from my folder.
+Ok lets try and find the whole mitochondrion searching in amino acid space. Copy the file from my folder first:
 
 ```
-cp xx
+cp xx .
 tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res
 ```
+Hmm looks like several contigs? It would be tedious to pull them all out using grep. Lets' try this custom script that outputs them into a result.fas file. You can also specify a stricter evalue cutoff if you need to. 
+
 
 module load python/2.7.8
 python ~/ericblparser.py mito.res . 1
