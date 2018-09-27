@@ -367,7 +367,7 @@ display filename.jpg
 
 ##### BLAST 
 
-Let's use BLAST to find some target genes. On Genbank find the [COI sequence of a cicada](https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI) and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly after making our assembly into a nucleotide BLAST database: 
+Let's use BLAST to find some target genes. On Genbank find the (COI sequence of a cicada)[https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI] and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly after making our assembly into a nucleotide BLAST database: 
 
 ```
 module load blast
