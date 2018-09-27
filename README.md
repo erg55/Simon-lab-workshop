@@ -351,7 +351,7 @@ ssh -X username@xanadu-submit-ext.cam.uchc.edu
 ```
 This should open up a program called X11 for Mac users. I'm not sure if this will work for the ubuntu client on Windows or not. You may require a different program.
 
-The program below will alow you to view image files like jpg, png and tiff.
+The program below will alow you to view image files like jpg, png and tiff. There should be a similar program for html and pdf files but I can't find any installed on the cluster at the moment.
 
 ```
 module load imageMagick
@@ -371,9 +371,9 @@ Not a great format for automating things. Try this next:
 ```
 blastn -query COI.fasta -db contigs.fasta -outfmt 6 
 ```
-You can also add an evalue cutoff and output it into a file next:
+You can also add an evalue cutoff and output it into a file next.Make sure to include the parameter to search for the invertebrate mitochondrial genetic code.
 ```
-tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res -evalue 1e-50
+tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res -evalue 1e-50 -query_gencode 5 -db_gencode 5
 ```
 
 Where you able to find (a) matching contig(s)? To check you can query the contig using grep and request N number of lines after it to print out the full sequence:
@@ -384,12 +384,13 @@ grep -A N CONTIGNAME contigs.fasta
 
 You can blast this online against the (nr database)[https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome] in order to better confirm what exactly it is. 
 
-Ok lets try and find the whole mitochondrion searching in amino acid space. MAke sure to include the parameter to search for the invertebrate mitochondrial genetic code. Copy the file from my folder first:
+Ok lets try and find the whole mitochondrion searching in amino acid space.  Copy the file from my folder first:
 
 ```
 cp xx .
 tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res -query_gencode 5 -db_gencode 5
 ```
+
 Hmm looks like several contigs? It would be tedious to pull them all out using grep. Lets' try this custom script that outputs them into a result.fas file. You can also specify a stricter evalue cutoff if you need to. 
 
 ```
@@ -412,10 +413,10 @@ bwa index mito.contigs
 bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
 ```
 
-t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score
+t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score. We output that file. Take a peek at that file with head. This file includes more than we need so
 
 ##### SAMTOOLS
-We can use samtools to only view the mapped reads and then pull those reads out specifically.
+This file includes more than we need so we can use samtools to only view the mapped reads and then pull those reads out specifically.
 ```
 module load samtools
 samtools view -b -F 4 bwafile > mapped.bam
@@ -435,20 +436,14 @@ This should go very quickly...then we can view the assembly graph (.gfa file) in
 
 ##### Geneious
 
-Then we can download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious.
+Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious.
 
-
-
-
-##### Seqtk
-module load seqtk
-seqtk seq -a in.fastq.gz > out.fasta
 
 
 
 ##### MITObim
 
-Another strategy we can try is an iterative read mapper like MITObim which uses Mira:
+Another strategy we can try is an iterative read mapper like MITObim which uses mira:
 
 ```
 nano Seed.fasta
@@ -456,6 +451,8 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 module load mira
 ~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 ```
+
+
 
 
 <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
@@ -492,6 +489,12 @@ module load Trimmomatic
 module load bbmap
 ```
 
+# WEEK IV
+
+
+##### Seqtk
+module load seqtk
+seqtk seq -a in.fastq.gz > out.fasta
 
 
 
@@ -522,6 +525,8 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 #### Align
 
 #### Alignment viewer 
+
+### Dataset manipulation scripts
 
 #### Tools:  
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
