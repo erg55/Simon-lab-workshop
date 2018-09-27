@@ -349,7 +349,14 @@ Let's try something to view these files without downloading them. Log out and ba
 exit
 ssh -X username@xanadu-submit-ext.cam.uchc.edu
 ```
-This should open up a program called X11 for Mac users. For windows users try and download [Xming](https://sourceforge.net/projects/xming/) here. You may require a different program.
+This should open up a program called X11 for Mac users. For Windows users, follow the instructions below: 
+
+Download [Xming](https://sourceforge.net/projects/xming/) here. This gives you an X server for windows.
+Next, you need to install the X11 apps.
+```
+sudo apt-get install x11-apps
+```
+Now you can log into the cluster using the previous -X flag. You will get an error message about not having an .Xauthority file, but it automatically creates one for you.
 
 The program below will alow you to view image files like jpg, png and tiff. There should be a similar program for html and pdf files but I can't find any installed on the cluster at the moment.
 
