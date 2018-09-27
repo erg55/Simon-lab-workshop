@@ -431,12 +431,12 @@ Then we can try to create an assembly for those reads only:
 
 ##### Bandage
 
-This should go very quickly...then we can view the assembly graph (.gfa file) in Bandage. Download it with rsync or copy and paste it locally. 
+This should go very quickly...then we can view the assembly graph (.gfa file) in [Bandage](https://rrwick.github.io/Bandage/). Download it with rsync or copy and paste it locally. 
 
 
 ##### Geneious
 
-Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious.
+Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious. If you don't have Geneious installed we can try and get that working afterwards. 
 
 
 
@@ -538,5 +538,5 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [BWA](http://bio-bwa.sourceforge.net/bwa.shtml)  
 [SeqTK](https://github.com/lh3/seqtk)  
 [MITObim](https://github.com/chrishah/MITObim)  
-[Bandage]()
+[Bandage](https://rrwick.github.io/Bandage/)  
 
