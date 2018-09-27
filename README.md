@@ -349,7 +349,7 @@ Let's try something to view these files without downloading them. Log out and ba
 exit
 ssh -X username@xanadu-submit-ext.cam.uchc.edu
 ```
-This should open up a program called X11 for Mac users. I'm not sure if this will work for the ubuntu client on Windows or not. You may require a different program.
+This should open up a program called X11 for Mac users. For windows users try and download [Xming](https://sourceforge.net/projects/xming/) here. You may require a different program.
 
 The program below will alow you to view image files like jpg, png and tiff. There should be a similar program for html and pdf files but I can't find any installed on the cluster at the moment.
 
