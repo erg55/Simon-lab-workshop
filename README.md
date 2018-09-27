@@ -343,7 +343,20 @@ module load quast
 quast.py contigs.fasta
 ```
 
+Let's try something to view these files without downloading them. Log out and back into the cluster this time using the -X flag. 
 
+```
+exit
+ssh -X username@xanadu-submit-ext.cam.uchc.edu
+```
+This should open up a program called X11 for Mac users. I'm not sure if this will work for the ubuntu client on Windows or not. You may require a different program.
+
+The program below will alow you to view image files like jpg, png and tiff.
+
+```
+module load imageMagick
+display filename.jpg
+```
 
 ##### BLAST 
 
