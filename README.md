@@ -207,6 +207,10 @@ squeue
 ```
 sinfo -s
 ```
+To check the avaialable processors on every nod eyou can use this command: 
+```
+scontrol show node
+```
 
 ## ASSEMBLING SEQUENCE DATA
 ##### Assess quality with fastqc
