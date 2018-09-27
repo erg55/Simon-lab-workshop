@@ -421,7 +421,7 @@ Alright, lets see if we can assemble the mitochondrial genome better. What we ca
 ```
 module load bwa
 bwa index mito.contigs
-bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S190_dedup_R1.fastq.gz > bwafile
+bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S190_dedup_R2.fastq.gz > bwafile
 ```
 
 t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score. We output that file. Take a peek at that file with head. This file includes more than we need so
@@ -448,8 +448,6 @@ This should go very quickly...then we can view the assembly graph (.gfa file) in
 ##### Geneious
 
 Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious. If you don't have Geneious installed we can try and get that working afterwards. 
-
-
 
 
 ##### MITObim
