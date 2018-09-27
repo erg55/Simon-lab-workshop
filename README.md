@@ -395,10 +395,10 @@ grep -A N CONTIGNAME contigs.fasta
 
 You can blast this online against the (nr database)[https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome] in order to better confirm what exactly it is. 
 
-Ok lets try and find the whole mitochondrion searching in amino acid space.  Copy the file from my folder first:
+Ok lets try and find the whole mitochondrion searching in amino acid space.  Copy the file from my folder or create a file called mito.fas:
 
 ```
-cp xx .
+
 tblastx -query mito.fas -db contigs.fasta -outfmt 6 -evalue 1e-50 -out mito.res -query_gencode 5 -db_gencode 5
 ```
 
@@ -406,7 +406,7 @@ Hmm looks like several contigs? It would be tedious to pull them all out using g
 
 ```
 module load python/2.7.8
-python ~/scripts/ericblparserspades.py mito.res . 1
+python /home/CAM/egordon/scripts/ericblparserspades.py mito.res . 1
 ```
 
 Rename the result.fas file to mito.contigs:
