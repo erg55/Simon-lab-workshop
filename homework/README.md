@@ -73,12 +73,12 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 
 Let's try and download some data from the [Short Read Archive](https://www.ncbi.nlm.nih.gov/sra/?term=Cicadidae) on GenBank. 
 
-Replace the SRA number in the file with your specific number:
-Eric: ERR073022
-Jason: SRR7014898
-Mark: SRR7014900
-Diler: SRR7014887
-Jefrin:SRR7014891
+Replace the SRA number in the file with your specific number:  
+Eric: ERR073022  
+Jason: SRR7014898  
+Mark: SRR7014900  
+Diler: SRR7014887  
+Jefrin:SRR7014891  
 
 ```
 module load sratoolkit
