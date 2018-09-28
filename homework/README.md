@@ -79,6 +79,7 @@ Jason: SRR7014898
 Mark: SRR7014900  
 Diler: SRR7014887  
 Jefrin: SRR7014891  
+Katie: SRR6282309 (Chrysoperla)
 
 ```
 module load sratoolkit
