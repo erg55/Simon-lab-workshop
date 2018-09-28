@@ -78,7 +78,7 @@ Eric: ERR073022
 Jason: SRR7014898  
 Mark: SRR7014900  
 Diler: SRR7014887  
-Jefrin:SRR7014891  
+Jefrin: SRR7014891  
 
 ```
 module load sratoolkit
