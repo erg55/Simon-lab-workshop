@@ -507,6 +507,8 @@ module load mira
 /home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fq.gz --quick ./Seed.fasta -NFS_warn_only
 ```
 
+MitoBIM is very annoyed with '?'s or '-'s...replace those with 'N's. Also it will not overwrite any existing iterations so you must change the start number if you have already used that iteration number before. Lastly make sure to load mira first. You can change the sample name /ref name too sometimes that works. 
+
 
 ##### Seqtk
 
@@ -517,7 +519,7 @@ module load seqtk
 seqtk seq -a in.fastq.gz > out.fasta
 ```
 
-It can also subset a raw read file to a certainnumber of reads:
+It can also subset a raw read file to a certain number of reads:
 ```
 seqtk sample -s100 in.fastq.gz  10000 > subin.fq
 
