@@ -502,8 +502,9 @@ Install MITObim using git clone or use the installation in my folder. If you hav
 
 ```
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+nano Seed.fasta 
 module load mira
-/home/CAM/egordon/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
+/home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fq.gz --quick ./Seed.fasta -NFS_warn_only
 ```
 
 
