@@ -496,13 +496,12 @@ A short week! We will cover just a few things.
 
 Another strategy we can try for gathering an entire sequence from a partial one is an iterative read mapper like MITObim which uses the read mapper mira. 
 
-Install MITObim using git clone or use the installation in my folder.
+Install MITObim using git clone or use the installation in my folder. If you have a good single contig for your mitochondrial use that as and create a file called Seed.fasta
 
 ```
-nano Seed.fasta
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 module load mira
-~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
+/home/CAM/egordon/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 ```
 
 ##### Seqtk
