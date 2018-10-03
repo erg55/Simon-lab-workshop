@@ -73,9 +73,17 @@ Let's use the **diff** and **comm** commands to compare the two word lists. We f
 
 Let's try and download some data from the [Short Read Archive](https://www.ncbi.nlm.nih.gov/sra/?term=Cicadidae) on GenBank. 
 
+Replace the SRA number in the file with your specific number:  
+Eric: ERR073022  
+Jason: SRR7014898  
+Mark: SRR7014900  
+Diler: SRR7014887  
+Jefrin: SRR7014891  
+Katie: SRR6282309 (Chrysoperla)
+
 ```
 module load sratoolkit
-fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRR7014898
+fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRAnumber
 ```
 
 Run fastqc on these files. 
@@ -90,7 +98,9 @@ Go through all the other steps of assembly. You may need to create and submit sb
 ##### 3. What is the average %GC content?
 
 
-##### 4. Can you recover the COI sequence of this cicada from this assembly? Are you able to identify any bacteria present? 
+##### 4. Can you recover the COI sequence of this cicada from this assembly? Are you able to identify any bacteria present? How about other organisms? 
+
+
 
 
 
