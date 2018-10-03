@@ -450,17 +450,6 @@ This should go very quickly...then we can view the assembly graph (.gfa file) in
 Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious. If you don't have Geneious installed we can try and [get that working afterwards] (https://bioinformatics.uconn.edu/wp-content/uploads/sites/15/2018/03/Geneious-_connection.pdf). 
 
 
-##### MITObim
-
-Another strategy we can try is an iterative read mapper like MITObim which uses mira:
-
-```
-nano Seed.fasta
-cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
-module load mira
-~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
-```
-
 
 
 
@@ -490,6 +479,7 @@ alias h='history'
 alias du='du -bh'
 module load blast
 module load bwa
+
 module load samtools
 module load python/2.7.8
 module load seqtk
@@ -500,6 +490,20 @@ module load bbmap
 
 # WEEK IV
 
+A short week! We will cover just a few things.
+
+##### MITObim
+
+Another strategy we can try for gathering an entire sequence from a partial one is an iterative read mapper like MITObim which uses the read mapper mira. 
+
+Install MITObim using git clone or use the installation in my folder.
+
+```
+nano Seed.fasta
+cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+module load mira
+~/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
+```
 
 ##### Seqtk
 module load seqtk
