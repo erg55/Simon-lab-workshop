@@ -505,7 +505,7 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 module load mira
 /home/CAM/egordon/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 ```
-
+test
 
 ##### Seqtk
 module load seqtk
