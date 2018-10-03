@@ -500,6 +500,7 @@ module load bbmap
 
 # WEEK IV
 
+diler
 
 ##### Seqtk
 module load seqtk
