@@ -500,15 +500,49 @@ Install MITObim using git clone or use the installation in my folder. If you hav
 
 ```
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+nano Seed.fasta 
 module load mira
-/home/CAM/egordon/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
+/home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fq.gz --quick ./Seed.fasta -NFS_warn_only
 ```
 
+
+MitoBIM is very annoyed with '?'s or '-'s...replace those with 'N's. Also it will not overwrite any existing iterations so you must change the start number if you have already used that iteration number before. Lastly make sure to load mira first. You can change the sample name /ref name too sometimes that works. 
+
+
+
 ##### Seqtk
+
+Seqtk is a program for dealing with fastq files. It can convert a fastq file into a fasta file for example if you wanted to make a blastdb out of your raw reads: 
+
+```
 module load seqtk
 seqtk seq -a in.fastq.gz > out.fasta
+```
 
+It can also subset a raw read file to a certain number of reads:
+```
+seqtk sample -s100 in.fastq.gz  10000 > subin.fq
 
+```
+
+##### Linux loops 
+
+Say if you wanted to loop over a set of folders and do the same thing to each of them! Here's how I might do it with a bash loop: 
+
+```
+for x in ERG07_S83_L005_trimmedspades.assembly ERG10trimmedspades.assembly ERG11trimmedspades.assembly ERG_12_S59_trimmedspades.assembly ERG_13_S60_trimmedspades.assembly ERG_14_S61_trimmedspades.assembly ERG_15_S62_trimmedspades.assembly ERG16_S84_L005_trimmedspades.assembly ERG_17_S63_L004_trimmedspades.assembly ERG_18_S64_trimmedspades.assembly ERG_19_S65_trimmedspades.assembly ERG_20_S66_trimmedspades.assembly ERG_21_S67_L004_trimmedspades.assembly ERG22_S85_L005_trimmedspades.assembly ERG_23_S68_trimmedspades.assembly ERG_24_S69_trimmedspades.assembly ERG_25_S70_L004_trimmedspades.assembly ERG_26_S71_trimmedspades.assembly ERG_27_S72_L004_trimmedspades.assembly ERG_28_S73_L004_trimmedspades.assembly ERG_3_S51_trimmedspades.assembly ERG4trimmedspades.assembly ERG_5_S53_trimmedspades.assembly ERG_6_S54_trimmedspades.assembly ERG_8_S55_trimmedspades.assembly ERG_9_S56_trimmedspades.assembly ERG_2_S50_L004_trimmedspades.assembly;
+do cd ~/metagenomes/trimmedassemblies/$x/;
+tblastn -query ~/Sulcproteome.fas -db contigs.fasta -outfmt 6 -out Sul.res -evalue 1e-100 -num_threads 32 -max_target_seqs 1 -max_hsps 1; 
+python ~/ericblparserspades.py Sul.res . 1;
+sed 's/>/>'$x'_Sulcia_/g' result.fas > Sulcprotresult.fa;
+done
+```
+
+When you want to refer to the variable within the loop, you have to use the '$' command. Here is how you can set the output of a command as a variable in bash: 
+
+```
+y=$(grep $x file) 
+```
 
 
 #### A slightly different loop that does the same thing
