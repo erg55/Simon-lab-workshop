@@ -532,13 +532,14 @@ The next line is a simple "do" to tell Bash that we starting an iteration of the
     do
 ```
 
-The loop will then begin each function line by line. In this example, we are creating a blast database for the "contigs.fasta" file within a sample folder. Then we are blasting "ref_seq.fasta" against that blast database and saving the output as a unique file name in our current directory. Within these functions, you will notice "${sample}". This tells Bash to substitute into your function the current value of "sample". For example, if the first iteration takes on the value "sample1" in "array", the operations within the loop will use "sample1/contigs.fasta" and output "sample1_blast_results".  
+The loop will then begin each function line by line. In this example, we are creating a blast database for the "contigs.fasta" file within a sample folder. Then we are blasting "ref_seq.fasta" against that blast database and saving the output as a unique file name in our current directory. Within these functions, you will notice "${sample}". This tells Bash to substitute into your function the current value of "sample". For example, if the first iteration takes on the value "sample1" in "array", the operations within the loop will use "sample1/contigs.fasta" and output "sample1_blast_results". The last line is a simple "done" to tell Bash that the loop is finished and that there are no other function to run. At this point the loop will start again using the next value in "array" or it will end if there are no remaining values to loop through.  
 
 ```
     for sample in "${array[@]}";
     do
     makeblastdb -in ${sample}/contigs.fasta -dbtype nucl 
     blast ref_seq.fasta ${sample}/contigs.fasta -out ${sample)_blast_results
+    done
 ```
 
 After the all the loops are complete, you should get the following result in your current directory. 
