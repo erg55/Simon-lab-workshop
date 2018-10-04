@@ -550,7 +550,7 @@ y=$(grep $x file)
 We can also build loops using a slightly different syntax and method. First, let's create a Bash object called "array" and assign to it each sample name that we wish to iterate through separated by a space.  
 
 ```
-    array = (sample1 sample2 sample3) 
+    array=(sample1 sample2 sample3) 
 ```
 
 We now set up out loop by telling Bash that we want to assign each value within "array" to the Bash object "sample" as it iterates through each value first. The syntax here is a little bit more complex. The "$" operator tells Bash that the following information is a variable and has information in it. "[@]" tells Bash that we want to subset one value from "array" and assign it to "sample". The quotation marks ensure that the name of the subsetted value from "array" is inserted as a text substitution within the loop.   
