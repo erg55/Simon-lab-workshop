@@ -496,7 +496,7 @@ A short week! We will cover just a few things.
 
 Another strategy we can try for gathering an entire sequence from a partial one is an iterative read mapper like MITObim which uses the read mapper mira. 
 
-Install MITObim using git clone or use the installation in my folder. If you have a good single contig for your mitochondrial use that as and create a file called (Seed.fasta)[https://www.ncbi.nlm.nih.gov/nuccore/MG737728.1?from=1381&to=2919&report=fasta].
+Install MITObim using git clone or use the installation in my folder. If you have a good single contig for your mitochondrial use that as and create a file called [Seed.fasta](https://www.ncbi.nlm.nih.gov/nuccore/MG737728.1?from=1381&to=2919&report=fasta).
 
 ```
 cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
