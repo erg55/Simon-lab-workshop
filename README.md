@@ -499,10 +499,10 @@ Another strategy we can try for gathering an entire sequence from a partial one 
 Install MITObim using git clone or use the installation in my folder. If you have a good single contig for your mitochondrial use that as and create a file called [Seed.fasta](https://www.ncbi.nlm.nih.gov/nuccore/MG737728.1?from=1381&to=2919&report=fasta).
 
 ```
-cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
+cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fastq.gz
 nano Seed.fasta 
 module load mira
-/home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fq.gz --quick ./Seed.fasta -NFS_warn_only
+/home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fastq.gz --quick ./Seed.fasta -NFS_warn_only
 ```
 
 
