@@ -490,8 +490,6 @@ module load bbmap
 
 # WEEK IV
 
-
-
 A short week! We will cover just a few things.
 
 ##### MITObim
@@ -507,7 +505,9 @@ module load mira
 /home/CAM/egordon/MITObim/MITObim.pl -start 1 -end 20 -sample samplename -ref samplename2 -readpool ./all.fq.gz --quick ./Seed.fasta -NFS_warn_only
 ```
 
+
 MitoBIM is very annoyed with '?'s or '-'s...replace those with 'N's. Also it will not overwrite any existing iterations so you must change the start number if you have already used that iteration number before. Lastly make sure to load mira first. You can change the sample name /ref name too sometimes that works. 
+
 
 
 ##### Seqtk
@@ -543,6 +543,49 @@ When you want to refer to the variable within the loop, you have to use the '$' 
 ```
 y=$(grep $x file) 
 ```
+
+
+#### A slightly different loop that does the same thing
+
+We can also build loops using a slightly different syntax and method. First, let's create a Bash object called "array" and assign to it each sample name that we wish to iterate through separated by a space.  
+
+```
+    array = (sample1 sample2 sample3) 
+```
+
+We now set up out loop by telling Bash that we want to assign each value within "array" to the Bash object "sample" as it iterates through each value first. The syntax here is a little bit more complex. The "$" operator tells Bash that the following information is a variable and has information in it. "[@]" tells Bash that we want to subset one value from "array" and assign it to "sample". The quotation marks ensure that the name of the subsetted value from "array" is inserted as a text substitution within the loop.   
+
+```
+    for sample in "${array[@]}";
+```
+
+The next line is a simple "do" to tell Bash that we starting an iteration of the loop.
+
+```
+    for sample in "${array[@]}";
+    do
+```
+
+The loop will then begin each function line by line. In this example, we are creating a blast database for the "contigs.fasta" file within a sample folder. Then we are blasting "ref_seq.fasta" against that blast database and saving the output as a unique file name in our current directory. Within these functions, you will notice "${sample}". This tells Bash to substitute into your function the current value of "sample". For example, if the first iteration takes on the value "sample1" in "array", the operations within the loop will use "sample1/contigs.fasta" and output "sample1_blast_results". The last line is a simple "done" to tell Bash that the loop is finished and that there are no other function to run. At this point the loop will start again using the next value in "array" or it will end if there are no remaining values to loop through.  
+
+```
+    for sample in "${array[@]}";
+    do
+    makeblastdb -in ${sample}/contigs.fasta -dbtype nucl 
+    blast ref_seq.fasta ${sample}/contigs.fasta -out ${sample)_blast_results
+    done
+```
+
+After the all the loops are complete, you should get the following result in your current directory. 
+
+```
+    sample1_blast_results
+    sample2_blast_results
+    sample3_blast_results
+```
+
+You may wish to add many more functions within the loop, some of which may take as input the above blast results files. The only limit to the complexity of the loop is computational power and time. Keep in mind that looping is not the most efficient way to get things done, but is certainly the most intuitive. 
+
 
 # WEEK V
 ## PHYLOGENOMICS
