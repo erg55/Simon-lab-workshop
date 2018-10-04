@@ -503,11 +503,12 @@ cat allsinglereadscombined.fq.gz merged.fq.gz >> all.fq.gz
 module load mira
 /home/CAM/egordon/MITObim/MITObim.pl -start 17 -end 20 -sample Opiss -ref Opis -readpool ./RCW5085-READC.fastq --quick ./Seed.fasta -NFS_warn_only
 ```
-test
 
 ##### Seqtk
 module load seqtk
 seqtk seq -a in.fastq.gz > out.fasta
+
+
 
 
 #### A slightly different loop that does the same thing
@@ -518,7 +519,7 @@ We can also build loops using a slightly different syntax and method. First, let
     array = (sample1 sample2 sample3) 
 ```
 
-We now set up out loop by telling Bash that we want to assign each value within "array" to the Bash object "sample" as it iterates through each value first. The syntax here is a little bit more complex. The "$" operator tells Bash that the following information is a variable and has information in it. "[@]" tells Bash that we want to subset each one value from "array" and assign it to "sample". The quotation marks ensure that the name of the subsetted value from "array" is inserted a text substitution within the loop.   
+We now set up out loop by telling Bash that we want to assign each value within "array" to the Bash object "sample" as it iterates through each value first. The syntax here is a little bit more complex. The "$" operator tells Bash that the following information is a variable and has information in it. "[@]" tells Bash that we want to subset one value from "array" and assign it to "sample". The quotation marks ensure that the name of the subsetted value from "array" is inserted as a text substitution within the loop.   
 
 ```
     for sample in "${array[@]}";
@@ -548,7 +549,7 @@ After the all the loops are complete, you should get the following result in you
     sample3_blast_results
 ```
 
-You may wish to add many more functions within the loop, some of which may take as input the above blast results files. The only limit to the complexity of the loop is computational power and time. Keep in mind that looping is not the most efficient way to get things done, but is certainly the most inuitive. 
+You may wish to add many more functions within the loop, some of which may take as input the above blast results files. The only limit to the complexity of the loop is computational power and time. Keep in mind that looping is not the most efficient way to get things done, but is certainly the most intuitive. 
 
 
 # WEEK V
