@@ -590,11 +590,16 @@ You may wish to add many more functions within the loop, some of which may take 
 # WEEK V
 ## PHYLOGENOMICS
 
+Alright, let's do some phylogenomics! I have uploaded a set of 2,000 files which correspond to alignments of something called UCEs found in the genomes of 12 hemipterans. Let's say we wanted to build a phylogeny with the loci in these regions but with our new taxa for which we have genomic data. 
 
+First, we have to find the loci (if they are even there). Each alignment includes data for multiple taxa, but maybe we can save time for just searching for the longest sequence. Or perhaps we want to use the auchennorhyncan sequence (Homvit...Homalodisca vitripennis) if it is present. 
 
 ## USEFUL SCRIPTS
 
 Most of these are stolen from my collaborator [Alex Knyshov](https://github.com/AlexKnyshov/main_repo)
+
+
+
 
 #### BLAST Parser Script
 
