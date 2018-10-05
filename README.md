@@ -599,10 +599,12 @@ Before that even, we should try and rename the contigs in this alignment so they
 >uce-142_acyPis2 |uce-142
 ```
 
-We want everything up to and including the underscore removed and everything after the space removed. [This] is a really helpful tool for writing commands like sed that use regular expression. The first sed command should replace the beginning bit
+We want everything up to and including the underscore removed and everything after the space removed. [This] is a really helpful tool for writing commands like sed that use regular expression. The first sed command should replace the beginning bit. You must specify the -r flag annoyingly for the extended grep vocubulary with the + symbol: 
+
+
 ```
-sed s/\w+\-\w+([\_])//g 
-sed s/\s.+//g
+sed -r 's/>\w+-\w+_/>/g' uce-142.fasta > testfile
+sed -r 's/\s.+//g' uce-142.fasta > testfile
 ```
 
 
