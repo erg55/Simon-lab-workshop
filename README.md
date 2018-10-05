@@ -590,9 +590,21 @@ You may wish to add many more functions within the loop, some of which may take 
 # WEEK V
 ## PHYLOGENOMICS
 
-Alright, let's do some phylogenomics! I have uploaded a set of 2,000 files which correspond to alignments of something called UCEs found in the genomes of 12 hemipterans. Let's say we wanted to build a phylogeny with the loci in these regions but with our new taxa for which we have genomic data. 
+Alright, let's do some phylogenomics! I have uploaded a set of 2,300+ files which correspond to alignments of something called UCEs found in the genomes of 12 hemipterans. Let's say we wanted to build a phylogeny with the loci in these regions but with our new taxa for which we have genomic data. 
 
 First, we have to find the loci (if they are even there). Each alignment includes data for multiple taxa, but maybe we can save time for just searching for the longest sequence. Or perhaps we want to use the auchennorhyncan sequence (Homvit...Homalodisca vitripennis) if it is present. 
+
+Before that even, we should try and rename the contigs in this alignment so they don't cause any issues. We just want the taxon name retained. To do that we can try a sed command. Currently the contigs look like this:
+```
+>uce-142_acyPis2 |uce-142
+```
+
+We want everything up to and including the underscore removed and everything after the space removed. [This] is a really helpful tool for writing commands like sed that use regular expression. The first sed command should replace the beginning bit
+```
+sed s/\w+\-\w+([\_])//g 
+sed s/\s.+//g
+```
+
 
 ## USEFUL SCRIPTS
 
