@@ -607,6 +607,11 @@ sed -r 's/>\w+-\w+_/>/g' uce-142.fasta > testfile
 sed -r 's/\s.+//g' uce-142.fasta > testfile
 ```
 
+```
+for x in *.fasta; do sed -r -i 's/>\w+-\w+_/>/g' $x ;
+sed -r -i 's/\s.+//g' $x;
+done
+```
 
 ## USEFUL SCRIPTS
 
