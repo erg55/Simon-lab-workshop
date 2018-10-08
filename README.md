@@ -448,7 +448,7 @@ This should go very quickly...then we can view the assembly graph (.gfa file) in
 
 ##### Geneious
 
-Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious. If you don't have Geneious installed we can try and [get that working afterwards] (https://bioinformatics.uconn.edu/wp-content/uploads/sites/15/2018/03/Geneious-_connection.pdf). 
+Then we can also download mapped reads (fastq) and map them back onto a reference mitochondrial genome in Geneious. If you don't have Geneious installed we can try and [get that working afterwards](https://bioinformatics.uconn.edu/wp-content/uploads/sites/15/2018/03/Geneious-_connection.pdf). 
 
 
 
