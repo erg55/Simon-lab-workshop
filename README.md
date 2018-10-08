@@ -295,7 +295,7 @@ Let's first just make sure the syntax is right for this to work. Run the command
 ```
 /home/CAM/egordon/spades/SPAdes-3.12.0-Linux/bin/spades.py -t 1 --merged S125_merged.fq.gz -s S125_allsinglereadscombined.fq.gz -o S125trimmedspades.assembly/
 ```
-If it looks like it's running correctly, stop it with control+C and lets try and submit it as a job because it may require some time and more memory than available on the head node. Generally you shouldn't run a bunch heavy tasks on this node. 
+If it looks like it's running correctly, stop it with control+C and lets try and submit it as a job because it may require some time and more memory than available on the head node. Generally you shouldn't run a bunch heavy tasks on this node.  
 
 Make a script like below named spades.sh (make sure to update your email):
 ```
@@ -382,7 +382,7 @@ Not a great format for automating things. Try this next:
 ```
 blastn -query COI.fasta -db contigs.fasta -outfmt 6 
 ```
-You can also add an evalue cutoff and output it into a file next.Make sure to include the parameter to search for the invertebrate mitochondrial genetic code.
+You can also add an evalue cutoff and output it into a file next. Make sure to include the parameter to search for the invertebrate mitochondrial genetic code.
 ```
 tblastx -query COI.fasta -db contigs.fasta -outfmt 6 -out COI.res -evalue 1e-50 -query_gencode 5 -db_gencode 5
 ```
