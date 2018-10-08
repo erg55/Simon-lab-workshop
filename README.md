@@ -590,7 +590,15 @@ You may wish to add many more functions within the loop, some of which may take 
 # WEEK V
 ## PHYLOGENOMICS
 
+#### Upfront stuff
 Alright, let's do some phylogenomics! I have uploaded a set of 2,300+ files which correspond to alignments of something called UCEs found in the genomes of 12 hemipterans. Let's say we wanted to build a phylogeny with the loci in these regions but with our new taxa for which we have genomic data. 
+
+The files are here :
+
+```
+/home/CAM/egordon/UCEloci/*.fasta
+```
+
 
 First, we have to find the loci (if they are even there). Each alignment includes data for multiple taxa, but maybe we can save time for just searching for the longest sequence. Or perhaps we want to use the auchennorhyncan sequence (Homvit...Homalodisca vitripennis) if it is present. 
 
@@ -612,6 +620,23 @@ for x in *.fasta; do sed -r -i 's/>\w+-\w+_/>/g' $x ;
 sed -r -i 's/\s.+//g' $x;
 done
 ```
+
+
+And finally the target files are here :
+
+```
+/home/CAM/egordon/AHEloci/
+```
+
+#### Parallel BLAST
+
+#### BLAST Parser and extraction
+
+#### Alignment and viewing
+
+#### Phylogeny
+
+
 
 ## USEFUL SCRIPTS
 
