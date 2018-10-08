@@ -371,7 +371,7 @@ display filename.jpg
 
 ##### BLAST 
 
-Let's use BLAST to find some target genes. On Genbank find the (COI sequence of a cicada)[https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI] and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly after making our assembly into a nucleotide BLAST database: 
+Let's use BLAST to find some target genes. On Genbank find the [COI sequence of a cicada](https://www.ncbi.nlm.nih.gov/nuccore/?term=Kikihia+AND+COI) and create a file on the cluster with that sequence in fasta format. Then try and BLAST it against our assembly after making our assembly into a nucleotide BLAST database: 
 
 ```
 module load blast
@@ -393,7 +393,7 @@ Where you able to find (a) matching contig(s)? To check you can query the contig
 grep -A N CONTIGNAME contigs.fasta
 ```
 
-You can blast this online against the (nr database)[https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome] in order to better confirm what exactly it is. 
+You can blast this online against the [nr database](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) in order to better confirm what exactly it is. 
 
 Ok lets try and find the whole mitochondrion searching in amino acid space.  Copy the file from my folder or create a file called mito.fas:
 
