@@ -393,6 +393,7 @@ Where you able to find (a) matching contig(s)? To check you can query the contig
 grep -A N CONTIGNAME contigs.fasta
 ```
 
+
 You can blast this online against the [nr database](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) in order to better confirm what exactly it is. 
 
 Ok let's try and find the whole mitochondrion searching in amino acid space.  Copy the file from my folder or create a file called mito.fas:
@@ -421,10 +422,10 @@ Alright, lets see if we can assemble the mitochondrial genome better. What we ca
 ```
 module load bwa
 bwa index mito.contigs
-bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S190_dedup_R1.fastq.gz ../S190_dedup_R2.fastq.gz > bwafile
+bwa mem -t 2 -k 50 -B 10 -O 10 -T 90 mito.contigs ../S125_dedup_R1.fastq.gz ../S125_dedup_R2.fastq.gz > bwafile
 ```
 
-t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score. We output that file. Take a peek at that file with head. This file includes more than we need so
+t is threads, k is match length needed, B is mismatch penalty, O is gap opening penalty, T is minimal alignment score. We output that file. Take a peek at that file with head.
 
 ##### SAMTOOLS
 This file includes more than we need so we can use samtools to only view the mapped reads and then pull those reads out specifically.
