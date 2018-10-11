@@ -594,7 +594,7 @@ You may wish to add many more functions within the loop, some of which may take 
 #### Upfront stuff
 Alright, let's do some phylogenomics! I have uploaded a set of 2,300+ files which correspond to alignments of something called UCEs found in the genomes of 12 hemipterans. Let's say we wanted to build a phylogeny with the loci in these regions but with our new taxa for which we have genomic data. 
 
-The files are here :
+The files are here. Copy them to your own folder!
 
 ```
 /home/CAM/egordon/UCEloci/*.fasta
@@ -608,7 +608,7 @@ Before that even, we should try and rename the contigs in this alignment so they
 >uce-142_acyPis2 |uce-142
 ```
 
-We want everything up to and including the underscore removed and everything after the space removed. [This] is a really helpful tool for writing commands like sed that use regular expression. The first sed command should replace the beginning bit. You must specify the -r flag annoyingly for the extended grep vocubulary with the + symbol: 
+We want everything up to and including the underscore removed and everything after the space removed. [This](https://regexr.com/) is a really helpful tool for writing commands like sed that use regular expression. The first sed command should replace the beginning bit. You must specify the -r flag annoyingly for the extended grep vocubulary with the + symbol: 
 
 
 ```
@@ -622,6 +622,29 @@ sed -r -i 's/\s.+//g' $x;
 done
 ```
 
+Let's see what happens when we use a custom script called Removetaxa.py to keep only the auchennorhyncan data. First create a text file called taxontokeep with just "homVit1"
+```
+python /home/CAM/egordon/scripts/removeTaxa.py /home/CAM/you/ucefolder -e taxontokeep
+```
+
+This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using diff:
+
+```
+ls rmtaxaout > homVitfiles
+ls ucefolder/uce* > allfiles
+sort homVitfiles > sortedhomVitfiles
+sort allfiles > sortedallfiles
+comm -23 sortedallfiles sortedhomVitfiles > nonhomVitfiles
+```
+
+Now create a tiny script to loop through the contents of that file and move all the loci without homVit into the folder with the exclusive homVit sequences for each folder: 
+```
+while read x; 
+ do mv $x ./rmtaxaout/$x;
+ done < nonhomVitfiles
+```
+
+
 
 And finally the target files are here :
 
@@ -630,6 +653,8 @@ And finally the target files are here :
 ```
 
 #### Parallel BLAST
+
+
 
 #### BLAST Parser and extraction
 
