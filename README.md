@@ -671,7 +671,7 @@ We can set up a job to do a parallel blast of all of those query sequences now. 
 #SBATCH -e myscript_%j.err
 module load blast
 cd ~/yourUCEloci/renamed/rmtaxaout/regrouped/
-bash ~/scripts/folder_blast.sh ./ /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 12 y LIST
+bash /home/CAM/egordon/scripts/folder_blast.sh ./ /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 12 y LIST
 ```
 
 
