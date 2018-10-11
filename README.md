@@ -627,11 +627,11 @@ Let's see what happens when we use a custom script called Removetaxa.py to keep 
 python /home/CAM/egordon/scripts/removeTaxa.py /home/CAM/you/ucefolder -a taxontokeep
 ```
 
-This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using comm:
+This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using comm....make sure you are in the folder in with the uce files:
 
 ```
 ls rmtaxaout > homVitfiles
-ls ucefolder/uce* > allfiles
+ls uce* > allfiles
 sort homVitfiles > sortedhomVitfiles
 sort allfiles > sortedallfiles
 comm -23 sortedallfiles sortedhomVitfiles > nonhomVitfiles
