@@ -624,7 +624,7 @@ done
 
 Let's see what happens when we use a custom script called Removetaxa.py to keep only the auchennorhyncan data. First create a text file called taxontokeep with just "homVit1"
 ```
-python /home/CAM/egordon/scripts/removeTaxa.py /home/CAM/you/ucefolder -e taxontokeep
+python /home/CAM/egordon/scripts/removeTaxa.py /home/CAM/you/ucefolder -a taxontokeep
 ```
 
 This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using comm:
