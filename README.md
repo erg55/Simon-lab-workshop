@@ -627,7 +627,7 @@ Let's see what happens when we use a custom script called Removetaxa.py to keep 
 python /home/CAM/egordon/scripts/removeTaxa.py /home/CAM/you/ucefolder -e taxontokeep
 ```
 
-This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using diff:
+This should produce a new folder with 1,872 files. What about the other files? Let's figure out what they are using comm:
 
 ```
 ls rmtaxaout > homVitfiles
