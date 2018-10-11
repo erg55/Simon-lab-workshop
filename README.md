@@ -655,9 +655,23 @@ Finally, we have a folder of the perfect queries in a folder called "regrouped".
 ```
 
 #### Parallel BLAST
+We can set up a job to do a parallel blast of all of those query sequences now. If you are blasting an assembly it shouldn't take too long. 
 
 ```
-bash ~/scripts/folder_blast.sh ~/UCEloci/renamed/rmtaxaout/regrouped /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 1 y LIST
+#!/bin/bash
+#SBATCH --job-name=blast
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -c 12
+#SBATCH --partition=general
+#SBATCH --qos=general
+#SBATCH --mail-type=END
+#SBATCH --mem=5G
+#SBATCH -o myscript_%j.out
+#SBATCH -e myscript_%j.err
+module load blast
+cd ~/yourUCEloci/renamed/rmtaxaout/regrouped/
+bash ~/scripts/folder_blast.sh ./ /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 12 y LIST
 ```
 
 
