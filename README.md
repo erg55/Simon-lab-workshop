@@ -601,7 +601,7 @@ The files are here. Copy them to your own folder!
 ```
 
 
-First, we have to find the loci (if they are even there). Each alignment includes data for multiple taxa, but maybe we can save time for just searching for the longest sequence. Or perhaps we want to use the auchennorhyncan sequence (Homvit...Homalodisca vitripennis) if it is present. 
+First, we have to find the loci (if they are even there). Each alignment includes data for multiple taxa, but maybe we can save time for just searching for the longest sequence. Or perhaps we want to use the auchennorhyncan sequence (Homvit...Homalodisca vitripennis) if it is present. Let's try and do both in a way. 
 
 Before that even, we should try and rename the contigs in this alignment so they don't cause any issues. We just want the taxon name retained. To do that we can try a sed command. Currently the contigs look like this:
 ```
@@ -644,15 +644,23 @@ while read x;
  done < nonhomVitfiles
 ```
 
-
-
-And finally the target files are here :
+And lets reorganize those so the longest seqs come first: 
+```
+python /home/CAM/egordon/scripts/taxon_regroup.py -seqlen .
+```
+Finally, we have a folder of the perfect queries in a folder called "regrouped". We can either blast those against our assemblies from last week or perhaps some AHE loci here:
 
 ```
-/home/CAM/egordon/AHEloci/
+/home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles/
 ```
 
 #### Parallel BLAST
+
+```
+bash ~/scripts/folder_blast.sh ~/UCEloci/renamed/rmtaxaout/regrouped /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 1 y LIST
+```
+
+
 
 
 
