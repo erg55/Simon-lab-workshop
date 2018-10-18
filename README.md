@@ -691,7 +691,7 @@ python /home/CAM/egordon/scripts/ericblparserspades.py mito.res . 1
 
 Lets also take a look at this script which is written in python. If you can understand the basic elements of this script than you can modify it if you need to.
 
-There is also a more customizable version of this blast parser which can be useful and even comes with a nice visualization. Check it out [here](https://github.com/AlexKnyshov/main_repo). 
+There is also a more customizable version of this blast parser (alexblastparser) which can be useful and even comes with a nice visualization. It also automatically appends the new sequences to the initial query. Check it out [here](https://github.com/AlexKnyshov/main_repo). 
 
 We want to combine our new hits with the original queries so we can align them. Lets do that with just one for alignment for now using cat.
 ```
@@ -699,13 +699,23 @@ cat blastfilex ucelocusx > combinedx.fasta
 ```
 
 #### Alignment and viewing
-Lets try and use the alignment program mafft implemnted in another script that takes the arguments folder with fasta file, algorithm(ginsi einsi linsi), whether to adjust directions or not, and number of threads. Aligned files are output to "realigned" folder. 
+Lets try and use the alignment program mafft implemnted in another script that takes the arguments folder with fasta file, algorithm(ginsi einsi linsi), whether to adjust directions or not (adjust, noadjust, slow) , and number of threads. Aligned files are output to "realigned" folder. 
 
 ```
-python /home/CAM/egordon/scripts/align.sh .
+bash ~/scripts/align.sh ~/UCEloci/renamed/rmtaxaout/regrouped/modified/align einsi adjust 1
 ```
+Visualize the alignment with this R script. This is useful for looking at a bunch of alignments at once not so much a single one as we are doing now. 
+
+```
+module load R
+Rscript ~/scripts/view_DNAalignments.R -d . 1
+```
+
+We can trim the alignments, subset the taxa and concatenate them for an evenutal phylogenetic analysis. See the USeful scripts section below for more information. 
 
 #### Phylogeny
+
+
 
 <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
 
@@ -746,7 +756,6 @@ Most of these are stolen from my collaborator [Alex Knyshov](https://github.com/
 
 
 
-
 #### BLAST Parser Script
 
 
@@ -762,11 +771,16 @@ or
 wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainblparser.py
 ```
 
-#### Align
-
-#### Alignment viewer 
+There are several versions of this script. 
 
 ### Dataset manipulation scripts
+
+Trimming 
+
+Subset taxa
+
+Concantenate
+
 
 #### Tools:  
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
