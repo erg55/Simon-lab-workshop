@@ -629,3 +629,27 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [MITObim](https://github.com/chrishah/MITObim)  
 [Bandage](https://rrwick.github.io/Bandage/)  
 
+#### Using BBedit with the terminal in duel window view 
+
+It may be useful to write code in a text file locally using BBedit and send snippets of that code to be executed in the terminal in real time. This ensures that your workflow is recorded and that you can organize and make comments on your code as you go. You can set this up easily in BBedit. 
+
+Go to BBedit's preferences panel and click on "Menues and Shortcuts" on the lefthand side. Notice that there is a submenu with a folder called "Scripts". Within that, there should be a checked-off "Open Scripts Folder" option with a command on the righthand side that can be used to execute "Open Scripts Folder". Go ahead and execute that. You should now be looking at the "Scripts" folder in your local file manager. 
+
+Make a new text file and name it "send_to_terminal.applescript". In that text file, paste the following code. 
+
+```
+tell application "BBEdit"
+    set the_selection to (selection of front window as string)
+    if (the_selection) is "" then
+        set the_selection to line (get startLine of selection) of front window as string
+    end if
+end tell
+
+tell application "Terminal"
+    do script with command the_selection in window 1
+end tell
+```
+Put the text file you just made into the "Scripts" folder you opened through BBedit. Navigate back to BBedit's preferences panel, click on "Menues and Shortcuts" then "Scripts". You should now see a new option in the list called "send_to_terminal". On the righthand side, you can set a keyboard shortcut that will execute the "send_to_terminal" script (I made this "cammand + return"). 
+
+Test it out. You can open a new text file in BBedit (make sure there is also a terminal window open somewhere), highlight a bit of text, and hit "command + return". The text should now appear in the terminal as something that has just been executed. 
+
