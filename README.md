@@ -674,16 +674,70 @@ cd ~/yourUCEloci/renamed/rmtaxaout/regrouped/
 bash /home/CAM/egordon/scripts/folder_blast.sh ./ /home/CAM/egordon/AHEloci/prealignments/Prealignments_2alleles 1e-10 tblastx 12 y LIST
 ```
 
+Check out your blast results file. Roughly how many hits are there? 
 
 
-
+# WEEK VI
+## MORE PHYLOGENOMICS
 
 #### BLAST Parser and extraction
 
+OK! We can use a blast parser script to automatically pull out any hits we have found. We have used this once before but the script takes the blast result file, the folder where the file is that contains the matching contigs and an evalue cutoff. There is another version for doing this across several folders.
+
+```
+module load python/2.7.8
+python /home/CAM/egordon/scripts/ericblparserspades.py mito.res . 1
+```
+
+Lets also take a look at this script which is written in python. If you can understand the basic elements of this script than you can modify it if you need to.
+
+There is also a more customizable version of this blast parser which can be useful and even comes with a nice visualization. Check it out [here](https://github.com/AlexKnyshov/main_repo). 
+
+We want to combine our new hits with the original queries so we can align them. Lets do that with just one for alignment for now using cat.
+```
+cat blastfilex ucelocusx > combinedx.fasta
+```
+
 #### Alignment and viewing
+Lets try and use the alignment program mafft implemnted in another script that takes the arguments folder with fasta file, algorithm(ginsi einsi linsi), whether to adjust directions or not, and number of threads. Aligned files are output to "realigned" folder. 
+
+```
+python /home/CAM/egordon/scripts/align.sh .
+```
 
 #### Phylogeny
 
+<img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
+
+
+
+#### Viewing CPU usage
+
+Try the htop command to see who is abusing the head node in a fun visualization. Press F10 to exit. 
+
+#### Using BBedit with the terminal in duel window view 
+
+It may be useful to write code in a text file locally using BBedit and send snippets of that code to be executed in the terminal in real time. This ensures that your workflow is recorded and that you can organize and make comments on your code as you go. You can set this up easily in BBedit. 
+
+Go to BBedit's preferences panel and click on "Menues and Shortcuts" on the lefthand side. Notice that there is a submenu with a folder called "Scripts". Within that, there should be a checked-off "Open Scripts Folder" option with a command on the righthand side that can be used to execute "Open Scripts Folder". Go ahead and execute that. You should now be looking at the "Scripts" folder in your local file manager. 
+
+Make a new text file and name it "send_to_terminal.applescript". In that text file, paste the following code. 
+
+```
+tell application "BBEdit"
+    set the_selection to (selection of front window as string)
+    if (the_selection) is "" then
+        set the_selection to line (get startLine of selection) of front window as string
+    end if
+end tell
+
+tell application "Terminal"
+    do script with command the_selection in window 1
+end tell
+```
+Put the text file you just made into the "Scripts" folder you opened through BBedit. Navigate back to BBedit's preferences panel, click on "Menues and Shortcuts" then "Scripts". You should now see a new option in the list called "send_to_terminal". On the righthand side, you can set a keyboard shortcut that will execute the "send_to_terminal" script (I made this "cammand + return"). 
+
+Test it out. You can open a new text file in BBedit (make sure there is also a terminal window open somewhere), highlight a bit of text, and hit "command + return". The text should now appear in the terminal as something that has just been executed. 
 
 
 ## USEFUL SCRIPTS
@@ -726,27 +780,4 @@ wget https://raw.githubusercontent.com/AlexKnyshov/main_repo/master/blast/mainbl
 [MITObim](https://github.com/chrishah/MITObim)  
 [Bandage](https://rrwick.github.io/Bandage/)  
 
-#### Using BBedit with the terminal in duel window view 
-
-It may be useful to write code in a text file locally using BBedit and send snippets of that code to be executed in the terminal in real time. This ensures that your workflow is recorded and that you can organize and make comments on your code as you go. You can set this up easily in BBedit. 
-
-Go to BBedit's preferences panel and click on "Menues and Shortcuts" on the lefthand side. Notice that there is a submenu with a folder called "Scripts". Within that, there should be a checked-off "Open Scripts Folder" option with a command on the righthand side that can be used to execute "Open Scripts Folder". Go ahead and execute that. You should now be looking at the "Scripts" folder in your local file manager. 
-
-Make a new text file and name it "send_to_terminal.applescript". In that text file, paste the following code. 
-
-```
-tell application "BBEdit"
-    set the_selection to (selection of front window as string)
-    if (the_selection) is "" then
-        set the_selection to line (get startLine of selection) of front window as string
-    end if
-end tell
-
-tell application "Terminal"
-    do script with command the_selection in window 1
-end tell
-```
-Put the text file you just made into the "Scripts" folder you opened through BBedit. Navigate back to BBedit's preferences panel, click on "Menues and Shortcuts" then "Scripts". You should now see a new option in the list called "send_to_terminal". On the righthand side, you can set a keyboard shortcut that will execute the "send_to_terminal" script (I made this "cammand + return"). 
-
-Test it out. You can open a new text file in BBedit (make sure there is also a terminal window open somewhere), highlight a bit of text, and hit "command + return". The text should now appear in the terminal as something that has just been executed. 
 
