@@ -693,7 +693,7 @@ Lets also take a look at this script which is written in python. If you can unde
 
 There is also a more customizable version of this blast parser (alexblastparser) which can be useful and even comes with a nice visualization. It also automatically appends the new sequences to the initial query. Check it out [here](https://github.com/AlexKnyshov/main_repo). 
 
-We want to combine our new hits with the original queries so we can align them. Lets do that with just one for alignment for now using cat.
+We want to combine our new hits with the original queries so we can align them. Lets do that with just one for alignment for now using cat
 ```
 cat blastfilex ucelocusx > combinedx.fasta
 ```
@@ -702,7 +702,7 @@ cat blastfilex ucelocusx > combinedx.fasta
 Lets try and use the alignment program mafft implemnted in another script that takes the arguments folder with fasta file, algorithm(ginsi einsi linsi), whether to adjust directions or not (adjust, noadjust, slow) , and number of threads. Aligned files are output to "realigned" folder. 
 
 ```
-bash ~/scripts/align.sh ~/UCEloci/renamed/rmtaxaout/regrouped/modified/ einsi adjust 1 y
+bash /home/CAM/egordon/scripts/align.sh ~/UCEloci/renamed/rmtaxaout/regrouped/modified/ einsi adjust 1 y
 ```
 Visualize the alignment with this R script. This is useful for looking at a bunch of alignments at once not so much a single one as we are doing now. 
 
@@ -714,8 +714,6 @@ Rscript ~/scripts/view_DNAalignments.R -d . 1
 We can trim the alignments, subset the taxa and concatenate them for an evenutal phylogenetic analysis. See the Useful scripts section below for more information. 
 
 #### Phylogeny
-
-
 
 <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40"> EASTER EGG <img src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" data-canonical-src="https://www.clker.com/cliparts/C/v/B/g/z/i/easter-egg-md.png" width="25" height="40">
 
