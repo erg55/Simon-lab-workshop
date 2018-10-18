@@ -682,11 +682,11 @@ Check out your blast results file. Roughly how many hits are there?
 
 #### BLAST Parser and extraction
 
-OK! We can use a blast parser script to automatically pull out any hits we have found. We have used this once before but the script takes the blast result file, the folder where the file is that contains the matching contigs and an evalue cutoff. There is another version for doing this across several folders.
+OK! We can use a blast parser script to automatically pull out any hits we have found. We have used this once before but the script takes the blast result file, the folder where the file is that contains the matching contigs and an evalue cutoff. There is another option for doing this across several folders.
 
 ```
 module load python/2.7.8
-python /home/CAM/egordon/scripts/ericblparserspades.py mito.res . 1
+python /home/CAM/egordon/scripts/alexblastparser.py contigs.fasta.blast ../../../SRR7014898_trimmedspades.assembly/ . 1 -n 1
 ```
 
 Lets also take a look at this script which is written in python. If you can understand the basic elements of this script than you can modify it if you need to.
