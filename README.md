@@ -686,7 +686,7 @@ OK! We can use a blast parser script to automatically pull out any hits we have 
 
 ```
 module load python/2.7.8
-python /home/CAM/egordon/scripts/alexblastparser.py contigs.fasta.blast ../../../SRR7014898_trimmedspades.assembly/ . 1 -n 1
+python /home/CAM/egordon/scripts/alexblastparser.py contigs.fasta.blast ../../../SRR7014898_trimmedspades.assembly/contigs.fasta . 1 -n 1
 ```
 
 Lets also take a look at this script which is written in python. If you can understand the basic elements of this script than you can modify it if you need to.
@@ -702,7 +702,7 @@ cat blastfilex ucelocusx > combinedx.fasta
 Lets try and use the alignment program mafft implemnted in another script that takes the arguments folder with fasta file, algorithm(ginsi einsi linsi), whether to adjust directions or not (adjust, noadjust, slow) , and number of threads. Aligned files are output to "realigned" folder. 
 
 ```
-bash ~/scripts/align.sh ~/UCEloci/renamed/rmtaxaout/regrouped/modified/ einsi adjust 1
+bash ~/scripts/align.sh ~/UCEloci/renamed/rmtaxaout/regrouped/modified/ einsi adjust 1 y
 ```
 Visualize the alignment with this R script. This is useful for looking at a bunch of alignments at once not so much a single one as we are doing now. 
 
@@ -711,7 +711,7 @@ module load R
 Rscript ~/scripts/view_DNAalignments.R -d . 1
 ```
 
-We can trim the alignments, subset the taxa and concatenate them for an evenutal phylogenetic analysis. See the USeful scripts section below for more information. 
+We can trim the alignments, subset the taxa and concatenate them for an evenutal phylogenetic analysis. See the Useful scripts section below for more information. 
 
 #### Phylogeny
 
