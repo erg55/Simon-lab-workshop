@@ -41,7 +41,7 @@ Looks like we need node 61.
 tree2 <- root(tree1, node = 61, edgelabel = T, resolve.root = T)
 ```
 
-Hmmm not my preferred look. Instead we will use the reroot function in ggtree to midpoint reroot based on node 61.
+Hmmm not my preferred look. Instead we will use the reroot function in ggtree to midpoint reroot based on node 61. Here is some information about different programs for rooting https://www.biostars.org/p/332030/?fbclid=IwAR2V2lHOWgiLVCyvUdj2SFXaoxESKxU0o5f1WJvDcXvGVY6rgURr4td-kLY
 
 ```
 tree3 <- reroot(tree1, node = 61)
