@@ -49,4 +49,4 @@ tree3 <- reroot(tree1, node = 61)
 
 Here is a script https://github.com/AlexKnyshov/main_repo/blob/master/R/collapseN.R
 
-Load that code and we will now have use of the collapse_nodes function which takes a tree and a threshold for collpsing nodes. 
+Load that code and we will now have use of the collapse_nodes function which takes a tree and a threshold for collapsing nodes. 
