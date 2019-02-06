@@ -29,22 +29,29 @@ First we want to reroot the tree. If we have a single outgroup we could do it th
 ```
 tree2 <- root(tree1, which(tree2$tip.label == "Philaenus_spumarius"), edgelabel = T)
 ```
-But we have two outgroups, so we will need to reroot based on a node. To see node labels, run 
+But we have two outgroups, so we will need to reroot based on a node. To see node labels, run the following using the ces to make the node labels smaller:
 
 ```
-plot(tree2, cex=.2) 
+plot(tree1, cex=.2) 
 nodelabels()
 ```
 
-We need node 61. 
+
+
+We need node 62. Run dev.off() to close the plot before doing anything else. 
 ```
-tree2 <- root(tree1, node = 61, edgelabel = T, resolve.root = T)
+dev.off() 
+```
+
+Now reroot like this:
+```
+tree2 <- root(tree1, node = 62, edgelabel = T, resolve.root = T)
 ```
 
 Hmmm not my preferred look. Instead we will use the reroot function in ggtree to midpoint reroot based on node 61. Here is some information about different programs for rooting https://www.biostars.org/p/332030/?fbclid=IwAR2V2lHOWgiLVCyvUdj2SFXaoxESKxU0o5f1WJvDcXvGVY6rgURr4td-kLY
 
 ```
-tree3 <- reroot(tree1, node = 61)
+tree3 <- ggtree::reroot(tree1, 62)
 ```
 
 Next, we'd like to try and collapse nodes less than a certain value. Here is a script to run to implement a function to do just that.
@@ -56,3 +63,17 @@ Load that code and we will now have use of the collapse_nodes function which tak
 ```
 tree4 <- collapse_nodes(tree3, 65)
 ```
+
+We can try and do some fancy functions within ggtree like changing the tree shape. 
+
+
+```
+ggtree(tree4, layout="daylight")
+tree5 <- ggtree(tree4, layout="daylight")
+```
+
+```
+tree5 + geom_tiplab(size=2, color="magenta")
+```
+
+
