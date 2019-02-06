@@ -36,7 +36,7 @@ plot(tree2, cex=.2)
 nodelabels()
 ```
 
-Looks like we need node 61. 
+We need node 61. 
 ```
 tree2 <- root(tree1, node = 61, edgelabel = T, resolve.root = T)
 ```
@@ -47,6 +47,12 @@ Hmmm not my preferred look. Instead we will use the reroot function in ggtree to
 tree3 <- reroot(tree1, node = 61)
 ```
 
-Here is a script https://github.com/AlexKnyshov/main_repo/blob/master/R/collapseN.R
+Next, we'd like to try and collapse nodes less than a certain value. Here is a script to run to implement a function to do just that.
 
-Load that code and we will now have use of the collapse_nodes function which takes a tree and a threshold for collapsing nodes. 
+https://github.com/AlexKnyshov/main_repo/blob/master/R/collapseN.R
+
+Load that code and we will now have use of the collapse_nodes function which takes a tree and a threshold for collapsing nodes and adds any collapsed branch length to descendent nodes. 
+
+```
+tree4 <- collapse_nodes(tree3, 65)
+```
