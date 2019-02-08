@@ -73,7 +73,7 @@ dev.off()
 ```
 
 
-![sadtree](https://github.com/erg55/Simon-lab-workshop/blob/master/R/output1.pdf)
+![sadtree](https://github.com/erg55/Simon-lab-workshop/blob/master/R/output1.jpg)
 
 Oops that's not super useful. We need to add in some additional stuff for tip labels and bootstrap supports. 
 
