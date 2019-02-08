@@ -143,6 +143,18 @@ geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch)
 xlim(0,5.5)
 dev.off()
 ```
+Let's add a legend: 
 
+
+```
+tree6 <- groupOTU(tree4,cls)
+pdf("output.pdf", width=8.5, height=11)
+ggtree(tree6, aes(color=group)) +
+geom_tiplab(size=2) + 
+geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch), vjust =-0.1, size = 2) +
+xlim(0,5.5) + 
+theme(legend.position=c(0.2, 0.6), legend.title = element_blank())
+dev.off()
+```
 
 
