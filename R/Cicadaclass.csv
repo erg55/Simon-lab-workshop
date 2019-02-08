@@ -1,8 +1,8 @@
 name,subfamily
 Acuticephala_alipuncta_merged,Tettigadinae
 Allobroma_kedenburgi_merged,Cicadettinae
-Beameria_venosa_merged,Cicadettinae
-Carineta_diardi_merged,Tettigadinae
+Beameria_venosa_merged,Cicadinae
+Carineta_diardi_merged,Cicadettinae
 Cercopis_vulnerata,outgroup
 Chrysocicada_sp_merged,Cicadettinae
 Cicada_orni_merged,Cicadinae
@@ -22,7 +22,7 @@ I6987_Cicadatra_nr_atra_capture,Cicadettinae
 I6989_Clidophleps_vagans_capture,Tettigadinae
 I6995_Diceroprocta_viridifascia_capture,Cicadinae
 I6998_Fidicina_amoena_capture,Cicadinae
-I7012_Katoa_sp_2_capture,Cicadinae
+I7012_Katoa_sp_2_capture,Cicadettinae
 I7027_Pagiphora_annulata_capture,Cicadettinae
 I7041_Stagira_sp_capture,Tettigomyiinae
 I7065_Zouga_peddi_09_ZA_EC_PED_01_LEG_capture,Cicadettinae
@@ -31,7 +31,7 @@ Kikihia_cauta_merged,Cicadettinae
 Lacetas_sp_merged,Tettigomyiinae
 Magicicada_neotredecim_merged,Cicadettinae
 Mogannia_hebes_merged,Cicadettinae
-Nosola_paradoxa_merged,Tettigomyiinae
+Nosola_paradoxa_merged,Cicadinae
 Odopoea_insignifera_merged,Cicadinae
 Okanagana_canadensis_merged,Tettigadinae
 Parnisa_sp_merged,Cicadettinae
