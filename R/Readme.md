@@ -36,7 +36,7 @@ plot(tree1)
 
 First we want to reroot the tree. If we have a single outgroup, we could do it this way: 
 ```
-tree2 <- root(tree1, which(tree2$tip.label == "Philaenus_spumarius"), edgelabel = T)
+tree2 <- root(tree1, which(tree1$tip.label == "Philaenus_spumarius"), edgelabel = T)
 plot(tree2)
 ```
 But we have two outgroups, so we will need to reroot based on a node. To see node labels, run the following using the ces to make the node labels smaller:
