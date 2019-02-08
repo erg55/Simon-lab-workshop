@@ -117,6 +117,16 @@ xlim(0,5.5)
 dev.off()
 ```
 
+You can also save things with ggsave as long as you save the ggtree object into its own file. 
+
+```
+t4 <- geom_tiplab(size=2) + 
+geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch), vjust =-0.1, size = 2) +
+xlim(0,5.5)
+ggsave("output.svg", t4, scale =0.8)
+```
+
+
 We can also try and do some fancy functions within ggtree like changing the tree shape or changing the tip colors. 
 
 
