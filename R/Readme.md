@@ -9,8 +9,6 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("ggtree")
 ```
 
-There will probably be many problems....hopefully we can fix them! 
-
 
 Ok now load some things 
 ```
@@ -22,7 +20,7 @@ library(phytools)
 There will probably be many problems....hopefully we can fix them! 
 
 
-Let's import our tree which is the a standard bipartitions file from RAxML and look at it. MAke sure and update your working directory to what ever folder has the tree in it. You can download the files from this page. 
+Let's import our tree which is the a standard bipartitions file from RAxML and look at it. Make sure and update your working directory to what ever folder has the tree in it. You can download the files from this github page. 
 
 ```
 tree1 <- read.tree("example.tre")
@@ -31,7 +29,7 @@ plot(tree1)
 ```
 
 
-First we want to reroot the tree. If we have a single outgroup we could do it this way: 
+First we want to reroot the tree. If we have a single outgroup, we could do it this way: 
 ```
 tree2 <- root(tree1, which(tree2$tip.label == "Philaenus_spumarius"), edgelabel = T)
 plot(tree2)
@@ -42,8 +40,6 @@ But we have two outgroups, so we will need to reroot based on a node. To see nod
 plot(tree1, cex=.2) 
 nodelabels()
 ```
-
-
 
 
 We need node 62. Run dev.off() to close the plot before doing anything else. 
@@ -61,11 +57,10 @@ Hmmm not my preferred look. Instead we will use the reroot function in ggtree to
 
 ```
 tree3 <- ggtree::reroot(tree1, 62)
+plot(tree3)
 ```
 
-
-
-Ok now let's create a file with our tree and the ggtree function. We will make it a pdf so everyone's tree will look the same regardless of screens etc. It will be made in your output directory. We can also import this into Illustrator or Inkscape later. The extension .svg is also an option. 
+Ok now let's create a file with our tree and the ggtree function. We will make it a pdf so everyone's tree will hopefully look the same regardless of screens etc. It will be made in your output directory. We can also import this into Illustrator or Inkscape later. The extension .svg is also an option. 
 
 ```
 pdf("output.pdf", width=8.5, height=11)
@@ -75,7 +70,6 @@ dev.off()
 
 Oops that's not super useful. We need to add in some additional stuff for tip labels and bootstrap supports. 
 
-
 ```
 pdf("output.pdf", width=8.5, height=11)
 ggtree(tree3) +
@@ -84,7 +78,7 @@ geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch)
 dev.off()
 ```
 
-Looking better but our trees is going off of the page so we will need one more thing:
+Looking better but our trees is going off of the file so we will need one more thing:
 
 ```
 pdf("output.pdf", width=8.5, height=11)
@@ -115,7 +109,7 @@ xlim(0,5.5)
 dev.off()
 ```
 
-We can try and do some fancy functions within ggtree like changing the tree shape. 
+We can also try and do some fancy functions within ggtree like changing the tree shape. 
 
 
 ```
@@ -126,7 +120,10 @@ tree5 <- ggtree(tree4, layout="daylight")
 ```
 tree5 + geom_tiplab(size=2, color="magenta")
 ```
+There are many other functions you can try available here https://bioconductor.org/packages/release/bioc/vignettes/ggtree/inst/doc/treeVisualization.html#zoom-on-a-portion-of-tree
 
+
+Ok now let's do some metadata annotation.
 
 ```
 tab <- read.csv("Cicadaclass.csv", stringsAsFactors=F)
