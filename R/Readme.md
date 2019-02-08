@@ -54,6 +54,7 @@ dev.off()
 Now reroot like this:
 ```
 tree2 <- root(tree1, node = 62, edgelabel = T, resolve.root = T)
+plot(tree2)
 ```
 
 Hmmm not my preferred look. Instead we will use the reroot function in ggtree to midpoint reroot the outgroup branch based on node 62. Here is some information about how different programs root https://www.biostars.org/p/332030/?fbclid=IwAR2V2lHOWgiLVCyvUdj2SFXaoxESKxU0o5f1WJvDcXvGVY6rgURr4td-kLY
