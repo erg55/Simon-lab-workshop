@@ -127,7 +127,7 @@ tree5 + geom_tiplab(size=2, color="magenta")
 ```
 
 
-
-tab <- read.csv("tips.csv", stringsAsFactors=F)
-
+```
+tab <- read.csv("Cicadaclass.csv", stringsAsFactors=F)
+```
 
