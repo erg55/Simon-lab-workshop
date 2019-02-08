@@ -12,14 +12,15 @@ biocLite("ggtree")
 ```
 
 
-Ok now load some things 
+Ok now lets install/load some things 
 ```
+library(ggtree)
 install.packages(c("ape","phytools","ggplot2"))
 library(ape)
-library(ggtree)
 library(phytools)
-
 library(ggplot2)
+
+
 ```
 There will probably be many problems....hopefully we can fix them! 
 
