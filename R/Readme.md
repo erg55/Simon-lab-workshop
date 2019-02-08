@@ -162,4 +162,16 @@ theme(legend.position=c(0.2, 0.6), legend.title = element_blank())
 dev.off()
 ```
 
-
+And finally lets say we want to get rid of the unlabelled stuff in the legend and change the colors from the default
+```
+tree6 <- groupOTU(tree4,cls)
+pdf("output.pdf", width=8.5, height=11)
+ggtree(tree6, aes(color=group)) +
+  geom_tiplab(size=2) + 
+  geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch), vjust =-0.1, size = 2) +
+  xlim(0,5.5) +
+  theme(legend.position=c(0.2, 0.6), legend.title = element_blank()) +
+  scale_color_manual(values = c("0"="black",Tettigarctidae="black",Cicadettinae="blue",Cicadinae="darkblue",Tettigadinae="darkred",Derotettiginae="red",Tettigomyiinae="purple"), 
+                     breaks= c("Tettigarctidae","Cicadettinae","Cicadinae","Tettigadinae", "Derotettiginae","Tettigomyiinae"))
+dev.off()
+```
