@@ -130,4 +130,20 @@ Ok now let's do some metadata annotation.
 ```
 tab <- read.csv("Cicadaclass.csv", stringsAsFactors=F)
 ```
+We need to parse out the table into the different values.
+```
+cls <- list(Cicadettinae=tab$name[tab$subfamily=Cicadettinae], Cicadinae=tab$name[tab$subfamily=Cicadinae], Tettigarctidae=tab$name[tab$subfamily=Tettigarctidae], Tettigadinae=tab$name[tab$subfamily=Tettigadinae], Derotettiginae=tab$name[tab$subfamily=Derotettiginae], Tettigomyiinae=tab$name[tab$subfamily=Tettigomyiinae])
+```
+
+```
+tree6 <- groupOTU(tree4,cls)
+pdf("output.pdf", width=8.5, height=11)
+ggtree(tree6) +
+geom_tiplab(size=2) + 
+geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch), vjust =-0.1, size = 2) +
+xlim(0,5.5)
+dev.off()
+```
+
+
 
