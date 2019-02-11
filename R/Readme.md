@@ -65,6 +65,15 @@ tree3 <- ggtree::reroot(tree1, 62)
 plot(tree3)
 ```
 
+*NEW* There is some problem with this function which excludes one of the bootstrap supports in the clade leading to the taxon with tip label #1. This function below works around the problem by first using the ape package root function which works correctly and then ggtree reroot. 
+
+```
+rootnode <- 62
+tree3 <- ggtree::reroot(root(tree1, node = rootnode, edgelabel = T, resolve.root = F), node = rootnode)
+```
+
+
+
 Ok now let's create a file with our tree and the ggtree function. We will make it a pdf so everyone's tree will hopefully look the same regardless of screens etc. It will be made in your output directory. We can also import this into Illustrator or Inkscape later. The extension .svg is also an option. 
 
 ```
@@ -86,7 +95,7 @@ geom_text2(aes(subset = !isTip & as.numeric(label) > 50, label=label, x =branch)
 dev.off()
 ```
 
-Looking better but our trees is going off of the file so we will need one more thing:
+Looking better but our tree is extending past the limits of the file so we will need one more thing:
 
 ```
 pdf("output.pdf", width=8.5, height=11)
