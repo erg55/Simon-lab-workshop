@@ -1,3 +1,8 @@
+Paralell video series
+
+https://drive.google.com/drive/folders/18ZuYNfk4VIeAbjG6FvRe7rOCxV5SL7Bf
+
+
 # Simon-lab-workshop
 
 
