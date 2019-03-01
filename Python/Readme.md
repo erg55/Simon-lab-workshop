@@ -270,7 +270,8 @@ with open("output.fasta", "w") as f:
 
 
 
-###Applied case
+### Applied case
+
 searching nt for sequences that match a keyword, writing them to a fasta file, and aligning them to a file called alignment.fasta
 
 ```python
