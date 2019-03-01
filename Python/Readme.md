@@ -156,7 +156,7 @@ def translate_max_ORF(sequence):
 s = SeqIO.read("/UCHC/LABS/Simon/Python_Test/singleseq.fasta", "fasta")
 translated = translate_max_ORF(s.seq)
 print(translated)
-handle = NCBIWWW.qblast("blastp", "nr", single_sequence)
+handle = NCBIWWW.qblast("blastp", "nr", translated)
 blast_record = NCBIXML.read(handle)
 ```
 
