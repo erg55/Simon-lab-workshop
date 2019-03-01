@@ -53,282 +53,260 @@ Integers, strings, and lists are basic types of objects that you will always use
 
 Objects are acted on by methods, and they will output another object (usually). You can assign those objects to variables and send them into other methods.
 
-# Biopython
-
-Biopython is a massive python module designed for bioinformatics!
+------------------------------------------------------------------------------------------
 
    **Note on Biopython in the cluster and version control**
 The cluster has a few random versions of python to choose from, and the packages within them are maintained by someone else. As a result, only one of them has BioPython installed: python/2.7.8
 
 You can develop scripts for this version of python, but biopython is very out of date and you can't use the 'qblast()' function, nor 'Entrez.read()', and probably some others that I haven't tried. The best way around this is to install your own updated version of python in a virtual environment, which lets you add your own packages!
 
+**creating virtualenv for a python version**
+The virtualenv copies the version of python that is currently loaded. 'py-3.6.3' is just the name of the folder, which I made match the python version.
+This works with any version of python on the cluster
+
+_don't execute this, just run the source command in the next code block_
 After logging into the cluster:
 
     module unload python
     module load python/3.6.3
     virtualenv py-3.6.3
     module unload python
-
-This creates a directory with a new python in it. Activate by running the activate file 
-
     source /py-3.6.3/bin/activate
-    
-When you're in the virtual environment, you can install new packages using `pip`
-
     pip install biopython
     
-    
-To exit the virtual environment type
-
-    deactivate
+To exit the virtual environment type `deactivate`
     
     
-Our lab has started a group virtual environment so we can all have the same package base. You can activate it with
+Our lab has started a group virtual environment so we can all have the same packages. You can activate it with
 
-    source /UCHC/LABS/Simon/venv/py-3.6.3/bin/activate
-    
-   or if that part of the cluster is down again use mine:
-   
-    source /home/CAM/jvailionis/venv/py-3.6.3/bin/activate
-   
-   (or make your own, it's easy)
+    source /UCHC/LABS/Simon/venv/py-2.7.14/bin/activate
 
-### Reading fasta files in python using SeqIO
-   The SeqIO module is designed for handling fasta files. There are two methods to read fasta files with this module
+## Biopython
+Biopython is a massive python module and I won't cover most of it. All of its capabilities are listed here: http://biopython.org/DIST/docs/tutorial/Tutorial.html
 
-
+##### Every module 
 ```python
-from Bio import SeqIO
-```
-
-   SeqIO.parse() generates an object with two important components: 'seq' and 'id'
-
-
-```python
-for sequence in SeqIO.parse("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "fasta"):
-    print("Name:", sequence.id)
-    print("Sequence:", sequence.seq)
-```
-
-    Name: Uninformative_Sequence_Name_1
-    Sequence: AAACACACCTACCGTACAACAGCCGATACAGACGATACTACACAACAGCTTAAATTTGCGGATAATGAACAAGAGAACCCAATACAGTTCTTGAAGCATATGGAAATGAATATGGAAGCAATTTTATGATGCGATAAACGATAGTGAAAAAATAAATTGGATTAGCTGTCATCATAAGGGACCGCATCAGATTGGTTTTCGGTCATTCAAGATAAAGTGTAACCTTAAATCCAAAATGATGAAGAGAAGAGAAATGAAACTTTCATTGTCGAAAAAGACAAATTATAATAAATGTTCTTCCAATAATAACATGAATTCCGTGGAATCCTGTTGCCATGAAAAATGTTGATCCATAAATTGAATCAGAAATACAAAATGGGGATTCATAATATTCATATCCTTGCAAAATAGTGAAATATACACCTAACAATAAAGTCAATATAATTCTATAAATAGATTCATCATATTTTTTTTCTATAATCGAATGGTGAGCTCAAGTAATAGTTACACCAGAACATAATAAAATTATAGTATTTAATAATGGAACATGTATTGGATTAAATGGCTTAATACCGGCAGGAGGTCAAATTATTCCAATTTCTATAACGGGTCTTAATCTTCTATGAAAAAATCCCCAAAAAAAAGAAATAAAAAAAAAAATTTCTGAAATAATAAATAATACTATTCCAATCCTTAAACCCCTTACAACCGTGACTGTGTGTAATCCTAAAAACGTTCCTTCTCGTGAGATATCACGTCATCATTGAATTATTGTTAAAATTAAAATTAAAAATCCAATAATTAATAAAATAAAACTATATATATGAAATATTTTTACTATTCCAGATACAAAAGTAAGTGCTCCAATAGACCCAGTTAAAGGTCAAGGTCTATAATCAACTAAATGAAAAGGGTGGTTATTCATAAGAAATTTCTCTATAATATAAAGTGCTAAGAACTGTAAAAACATATGATTGAATTAAAGAAACAGCCGATTCAAACATTATTAATATAATTTGAATGAAAATAATTAAATATGTGCATATTCTTATATTAATTGAACTATTTCCTAATAATGTTATCAATAAATGACCTGCAATTATATTAGCTGTTAAGCGAACAGCTAATGATCCAGGTCGAATTATATTTCTAATTGTTTCAATACATACTATAAATGGTATTAAAACAGTAGGAGTTCCCATTGGAACTAAATGACAAAATATATGATTAGCATTATTTAAAAATCCAAATAAAATAAAAGTCATTCATAATGGCAAAGCCAATCTAATTGTAAATGTTAAATGACTTGATCTAGTAAAAATATATGGAAACAATCCAAGAAAATTATTTAATATAATAAATATAAATAAAGAACAAAATAATAAAGATCTTCCTAAAGATCTTTTTCCCATTAATATATTCAATTCAAGTCTTAAAGTGTTTAAAATTTTGATTAAAGTTATTAATCTTCGATTAGGAACCACTCAATATACTAAAGGAATAAAATATATTAAAGATGAAGATCTAATTCAATTAAATGAAAACATACCTGTTGATGGATCAAATGTCGAAAATAAATTTCCTATCATATTCAGTTAATTGTTTTAATTAAATTATTAGATAATTTAATCTTAGGTATAACCAAAAATGAAAAATAAATTACAGTCATAATTAATAAAATAATTATAATAAAATAAAAAAATAAAATTACTCAATTTATTGGAGATATTTGAGGAATGGAAAAATACTATTTAAGTTTCATTATTCTGACAGAATAATATTTTATATAAAATAATTTTTCCATTAAGAGTAATCGTTAATTACTATAAATTGGTTTAAGAGACCATTACTGACTTTCAGTCACTTAATGAACAATTAATTAACCAATTAATAAAATATTTTGAGCTAACTCTTTCAATAACAATGGGTATAAATCTATGATTTGCGCCACAGATTTCTGAACATTGCCCATAAGATAATCCTGGTCGACTTATAAACATTCTGGCTTGATTTAATCGACCAGGGACTGCATCCACTTTCACTCTCATAGAAGGCATAGCTCATGAATGAATAACATCAAAAGATGAAATCAATAAACGAATTTGAGTATTGAATGGTAAAACTGTTCGATTATCCACATCTAATAAACGAAATTCACCTATCAATAATTCATTATATGATTTTATATATGAATCAAATTCAATTATCATAAAATCCGAATATTCATAAGATCAATATCATTGATGACCAATAATTTTTAAAGTTATTAAAGGCTTTCTAACTTCATCGAGTAAATAAAGTAATCGTAAGGATGGAAATGCAATAAAGACTAAAGTCAAAGCAGGAAGAAAAGTTCAAAAAAATTCAATTATTTGTCCTTCTAATAATAATCGATTAACAGTAGTATTAAAAATTAATATTACTATCATATAAGCAACAATGGAAGTAATAACAATCAAGATAATTAAGGTATGATCATGAAAAAATATTAATTGTTCTATTAATGGAGATATAGCATCTTGTATATTAATATATGACCAATTGCAAATTTCTAATAAAAAAATTATTTTATATATGAATCTTAAATTCATTGCACTTATTCTGCCATATTAGAATTGAATTAATATGGGAATTTCTCTATATGAATGTTCTGAGGGGGGATATTTTTGTAATCATTCAATTGATGATATTATATTATTTGAATATAAAATTTTTCGTTGTGAAATAAATCTTTCCCACACAATAAATAACAATAATAAAATTCCAATTAATGAAATTCTTCTTCCAATAGAAGATAACACATTTCATGATATATAAGCATCTGGATAATCTGAATATCGACGAGGTATTCCACTAAGTCCCAAAAAATGTTGAGGAAAAAAAGTTATATTCACACCAATAAATATAACAATAAAATGAACCCTTAATCAATTAGAATTTAATGATATCCCAGTAAATAATGGATATCAATGAATAAATCTACCTAAAATTGCAAACACTGCACCTATGGATAAAACATAATGAAAATGTGCTACCACATAATATGTATCATGTAAAACAATATCAATAGATGAATTAGCTAAAATTACACCTGTTAATCCTCCAATAGTAAATAAAAACACAAATCCTAATGCTCATAAAATAGAAGGTGAGATCTTAATTTTAGTTCCTCTAAGAGTTGCTAATCAACTAAAAACTTTAATTCCAGTAGGAACAGCAATAATTATTGTTGCTGATGTAAAGTATGCACGAGTATCAACGTCCATTCCAACGGTAAATATATGATGAGCCCAGACAACAAAACCTAAAATTCCAATAGATATTATTGCATAAATTATTCCCAATGACCCAAATGACTCAACCTTTCCTCTTTCTTGAGTAATAATATGTGAAATTAACCCAAATCCTGGTAAAATCAAAATATAAACTTCAGGATGACCAAAGAATCAAAATAAATGCTGATATAAAATGGGATCCCCCCCTCCTGAAGGATCAAAAAAGGAAGTGTTTAAATTACGATCAGTCAATAATATTGTAATAGCTCCTGCTAAAACAGGTAGGGATAATAATAACAAAAAAGCAGTGATTAAAACTGCTCAAACAAATAATGGTATACGATCCATGAAAATTCCGACTGAACGTATATTAAAAATTGTTCTAATAAAATTTACCGCACCTAAGATCGATCTTGCACCTGCAAGATGAAGAGAAAAAATAGTTAAATCAACACAAGAACCCGAGTGCGCAACACTACTCGATAAAGGTGGGTATACCGTTCATCCAGTACCAGCACCTCTATCAACTATTCTCCCAATTAATAAAAGTGTCAAAGAAGGTGGTAGTAATCAAAAACTTATATTATTTATACGTGGAAAAGCTATATCTGGAGCCCCAATTATTAAAGGAACTAATCAATTTCCAAATCCACCAATTATAATAGGTATAACTATAAAGAAAATTATAATAAAAGCATGGGCAGTGACAATAACATTATAAATTTGATCATCTCCAATAAATGATCCAGGAATTCCTAACTCAACACGAATTAAAACTCTCAAAGTTGTACCAATTATTCCTGACCAAATTCCAAAAATAAAATATAATGTACCAATATCTTTATGATTAGTTGAAAAAAACCATTTATTCATAATCATAATTTTATTGGGATGGCTGATAAAAGCAATAAATTGTAAATTTATTAATGAAAATAATATTCTCCCAATAGTGAGTCTTATATTTAATTATAATATTAAATTGCAAATTTAAAGGTGATTTAAAGTAAATCTAAGGCTTATAATAATTATATTTTTAACTTTGAAGGATAATAGTTTCTTTAACTTAAAACCTTAATTACCAACAGTAAGTAAAGAAATTCTCATCAATCCAATTAATAAAAATCTACCCAAATAAATTAATCTATTCATCTTAATAAATAATATCTTTATTGTAACTATATTTATTATTAACCCAGTTATTACAATGCGTAAATAATAAAACAAAACCAACAATGCTGTTATTAATATCATTAAACACAATATGTATATATTATTAATTAAAAGACAATAAATTATTATAAATTTAGGAAAAAAACCAAAGAATGGTGGTAACCCACCTATTGATAAGAAAACAATTATTACCAAAAAAGTCTTAATTTTGTTCCCAAATATTAAGAAGAATTGATTTAAATAGTTTAAATTATTTATATCCAATAAATAACAAATTAAATATAAAGAAAATGAATAAATTAAAAAGTAAATTAATCAAGAATAATTCATTATCATAACTCCCACAAAAATTCATCTTAAATTATAAATTGAAGAGTATGCTAAAATTTTTCGAAACGAAGAGTAACATAGACCACCTAATGAACCCCATAAACAAGAAAAAATAATAAATATAATTAATCTTATATCAATATAACTCAATAAAACTAAAGGAATAATTTTTTGAATTGTCATAATTATAAAAGAAACTATCCAAGATAGCCCATCAATTACTGAAATATATCAATAATGAAATGGAGGACAACCAATTTTAATTATTAATCTAATTATAATAAAATAGTTAAATTCTACGCATACATTTATAATAACCATTGAAAGAAATAGTAGTCTTGAACCTATTCTTTGTACAATAAAATACTTAATCATAGATTCGGAAGAATAAACTCTTATTTTGTTTAATATAAAAGGCAAAAAAGAAATTATGTTTACCTCAATTCCAATCCAACAACCCAGCCAATTGTTAGAAGAAACGGATAACATAATCCCTAATAATAAGAACGCCATAAATATTATATAAGAGGAATTTTTTTTAATTAAAAAGAGGATTTTATTTCCATAAATGAGGTATGAACCCATTAGCTTAAGTTTAGCTTATCTTTTATGTTGTAGTTTATGAAGAACATTAATTTTTGATATTAAAAGACAGTTTAATTCTGACAACATATAATAAGAGTATTATATACATAATTTATTCTATCAAAATAACCCTTTTATCAGGCATCTTATTATCTATAGCCACTACCATAATGTGTATTTTATTGATAAAATAATAGCATTAGGTGTAACGATATATCACACTGGCATAACTCATTATACTCTATCTACACGAACTTCCCTATCTATAGCCACTACCATAATGTGTATTTTATTGATAAAATAATAGCATTAGGTGTAACGATATATCACACTGGCA
-    Name: Uninformative_Sequence_Name_2
-    Sequence: AATTTTATTTTTTAGTAAAGATTTACTCATATTAAGATATAATTTGTGATTGGATAATATCTCATACGGATTAATTATTCTTACTGTATGAATTTCATTTTTAATAATTAATTCAAGACCAAATTATAAACATAATAATATGGATGTATTTTTATTCATAGTAATATTATTAATAATTTTATTAATTTTATCATTTTGTTCTTATAACTTAATATTATTTTATATTTTCTTTGAATCAAGATTAATTCCCACAATAATTATTATTATGGGATGGGGCTATCAACCTGAACGAGTTAATGCTAGATATTATTTATTATTTTATACTTTATTTGCATCATTTCCATTTTTAATTTCCATTATTTCATTATATATAAATAATTTAACAAATATTATGTTATTAATATATTCAAGAAATAAATTTATTTATTTAAGAATAATTTTAGCATTCATAGTGAAAGTTCCACTATTTATATTTCATTTTTGATTACCTAAAGCTCATGTTGAAGCTCCGGTTTCTGGTTCAATAATTCTAGCTGGAATTCTATTAAAATTAGGCACATATGGATTAATTCGTTTAATGTTTATTATGCCGATAATATTTAATAAATATAGATTTATTTGAATTTCAATTCCTATAATTGGAGGAATTATAATTAGATTATTATGTATAATACAAATTGATATTAAATCAATAATTGCTTATTCATCCGTTGCTCATATAGGTCTGGTTGTTGGGGGGATTATAACAATAAATACTTGAGGGTTACTAGGTTCATACTATATAATTATTGGGCATGGGCTATGTTCCTCAGCTTTGTTTTGCTTAGCTAATATTAGTTATGAACGAATGGGATCTCGCAGAATATTAATTAATAAAGGAATGTTAAGATTTATACCATCAATAACTTTAATATGATTTTTATTATCAGCAAGAAATATTTCATGTCCGCCAACAATTAGATTAGCTGGAGAGATAATAATTTTAAATAGTTTAGTGTCTTGAAATTCATTAAGCATAATATTTTTGTCTATTTCCTCTTTTCTTTCAGCTGGCTATAGATTATTTTTATATTCATATACTCAGCATGGAACATTTTTTTCAGGCTCTTATTCATTTAATTATGGAGTTGTTCGGGAGTTTTTTTTAATCATAATACATTGAATTCCGTTAAATTTTATCATTTTAAAGATAACATTATTAATTTATTCAATTAGTTTAACATAAAACATTAAATTGTGGATTTAAAAATATAAATTTATATTGGATCATGAATAATAAAATCAATATATACTTCTTCTTGATCTTGATAGTTTTAAGATTAATAATAATAATTTTATCTATAAATATAATTATTTTCGATTATGTTGTAATAATAGAATGAATAATTGTTAGAATTAATTCATGTAATATTTATATAACTATAATTTTTGATTTTATATCAACTATATTTTTATCAACAGTGATATTTATTTCATCAACAGTGATGTTTTATAGAGGTACATATATAGAGAATGATAAAAATATTAGACGATTTATTTATATTATTATAATGTTTGTAATATCAATAATTATATTAATTATTAGTCCTAATATAATTAGTATTATTGTTGGATGAGATGGACTTGGTCTTGTCTCATATTGTTTAGTAATTTATTATCAAAATTTAAATTCAGCTAATGCAGGAATATTAACCGCTTTAATAAATCGAATTGGAGACGTAATGATTTTAATATTAATTGCATGAATATTAAATTTTGGTTCTTGAAATTTTTTATCATTTATTAGTAAAATAGAAATAAATTTTATATTAATTTTTATTATTATTGCAGGGTTTACCAAAAGAGCACAGATCCCATTCTCTTCTTGACTTCCAGCAGCAATAGCTGCTCCAACACCAGTATCTGCATTAGTTCACTCATCAACATTAGTTACTGCTGGGGTATACCTAATAATCCGATTTAGAAAATTAATTCTTACATTAAATTTTATTCAGTTTTTCTTAATATTATCTATCATAACTATAATTATGTCTGGTATTGGGGCAATTTTTGAATTCGATTTAAAAAAAATTATTGCATTATCAACATTAAGACAGCTTGGGATTATGATATCAATTTTAATATTTGGTTATCCAATATTGTCATTTTTTCATCTTATTATTCATGCTTTATTTAAAGCATCTTTATTTTTATGTGCAGGTGTATTAATTCATAGATTAAATAATAATCAAGACATTCGACTTATAGGATGTATAAGTTATAATATACCCTTAACAATAATGTTAATAAATACTGCTAATTTATCATTATGTGGAATTCCATTCATAAGAGGATTTTACTCAAAAGATTTAATCATAGAAATAATATGCTCAAATCATATCAATATATGAATTATTATATTAATATATTTAGGAATTGGCTTAACATCATTTTACTCTGCTCGATTAACTTATTTTTCTATAAATATAAATTTTAATTACTATAGTTTTAATTCATTAAATGAACCATTTAATAATATACTAAAAAGTATTTTAATACTATCTATTTATTCAATTATTTCAGGATCTATAATTACATGATTAATATTTAATAATCCAATTATTATCTCTCTTCCAATAGAAGGGAAAATAATAGCTTTATTTATATCTATAATCGGATTATTAATTGGATATGAAATTTCATCATTTTCAAAAACAAAAAAGAGAATAATGAAGGAATTTCTTGGAACTATATGATTTATAAAACAAATTTCAACGTTCCATAATCAATTTTTTTTATTAAAGAATTCTTATATATATCAAAAATCAATTGATTTAGGTTGAGGAGAAAAACTAGGGGTCCAAGGATTAGTTCAATTAATTAAATTTATGATATTTATTAATATTAAAATAAGCAAGAATAATTTTAAAATTCAAATAATAGCATTTATTTTATGGATCTTAATTATATTATATTTAAATAGCTTAACAAGAGCATAATATTGAAGATATTAAGGTGATAATTATATTTTTAAATATTTATAAGACAATGCCTCTCTTTCCAATGAAAATGAAATGTTTTAAAAACTTTATAAATAAGGAAAAAACGGATTTTAACCGCTTTAAAAACCAGTTAGCAGCTGCTTTTAACCTCGTTTCCTTTTAATTGGAAATACATTCAATTACCTTATTAACAATAAAGTGCCTCTATTTTGGCTTCAATTAAAACAATGGAATATATATTCTTTTTTTAGGTCGAAACTAAATGTATTAATTACTTCATTATTACAAGAATGGTTGATAACAACACCTATTGATTGCAATTCAATTATTATAATTAAATACATCCCTCATTAAACTCAATTTAATATATTATTTATTCATTCATGATATAATCCTAAAATCAATAATAATAAAAATACCATTATAATTATATAAATTTCAATTATATTAATTGAAGATATAATGACAACAACAGGTAAAATAATAACTAATTCAACGTCAAAAATCAAAAAAATAACCGCAATTATAAAAAAATGTCTAGAAAATGGAATCCGTGAGGATTCAAACGGATCAAATCCACACTCAAATGGTGATGATTTTTCACGATCAATGATTGACTTAATAGAAATAATATATAAAATAATTATTAAGATAGATAATACAAATAATAAAATAGCAGAATATATTATAAT
-    ...
-
-
-Another useful method is to save all of the SeqIO objects into a list. This allows you to refer back to them later (in the for loop you can only go through each object once unless you to the whole loop again)
-
-
-```python
-sequence_record = list(SeqIO.parse("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "fasta"))
-print(sequence_record[5].id)
-print(sequence_record[5].seq)
-```
-
-    Uninformative_Sequence_Name_6
-    TCTGTGGCATCTGCCCATCTGTTGCAGCAACAACTAATATAGCACCATCCATCTGAGATGTCCCTGAGATCATGTTTTTAATATAATCTGCATGCCCAGGGCAATCTGTATGAGCATAATGTCTCTTCTTTGTTTTATATTCTATATGTGTAGCATTAATTGTTATGCCACGTGACTTTTCTTCTGGTGCTCTATCAATCTCACTGTATGGAATATACTTGGTCTCGTTTTCTTTTGACATCAGCTTCGTAATTGCTGCAGTAAGAGTAGTTTTTCCATGATCAACATGACCTATGGTTCCCACATTACAATGGTTTCTACTAATTTTCGTACAGTAACACCTTATCCTATCCGTGCTACGTATAAAACTGTAATTACTAGTATTTAAAACTGTTCTTGAACTTTTCACTATATTTAAATACACGACTGTATGCCTCACACATGACAAAACTATGCTGTTCATTTTCTTCAAATTCACTTCAATCCTTTATTTTTCTTGATTGGTCCCACGCCTATATAAAGACGAGAAAAGGAAGACAGGAATATTAGTGTGCTGTAATGAGACTAAGTATGTTGATATTAAAATGGAAGACGTTCTTACCAGACTGGTGGAGACAGAAAAACATGAAGTGGTATAAGAAAACAAGCCAGAATCTCAGATGAAATTAAACGCAATGTCAGAGCTAAGTCTGAT
-
-
-### Automated Blast
-I don't remember where these sequences came from so we are going to blast them and find out
-NCBIWWW offers the qblast() function which lets you blast to the ncbi servers with any blast command.
-NCBIXML lets you read in the blast object 
-
-
-You can go through each of your sequences this way but it will take too long for right now. Usually you will submit something like this as a job.
-
-
-```python
+from Bio.Align.Applications import MafftCommandline
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
+from Bio import SeqIO
+from Bio import Entrez
+from Bio import AlignIO
+from StringIO import StringIO
+import random
+import sys
+import os
+import re
 ```
 
-
+### SeqIO
+Read and manage sequence data
+Supports many file formats
+Two methods for reading fasta files are given:
 ```python
-for SeqIOobject in sequence_record:
-    handle = NCBIWWW.qblast("blastn", "nt", SeqIOobject.seq)
-    blast_record = NCBIXML.read(handle)
-    
-    for alignment in blast_record.alignments:
-        print(alignment.title)
-        # do whatever
-        
+#most memory efficient method
+#must do all your analysis within this for loop (sequences are lost after)
+for seq in SeqIO.parse("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "fasta"):
+    print(seq.id)
+    print(seq.seq[:50] + "...")
+
+#stores all sequences in a list which can be referred back to
+sequence_record = list(SeqIO.parse("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "fasta"))
+for seq in sequence_record:
+  print(seq.id)
+  print(seq.seq[:50] + "...")
 ```
 
-    gi|1406948775|gb|MG737759.1| Tryella crassa isolate TRYCRA mitochondrion, partial genome
-    gi|1406948439|gb|MG737735.1| Aleeta curvicosta isolate ALECUR mitochondrion, partial genome
-    gi|1406948523|gb|MG737741.1| Magicicada septendecim isolate MAGSEP mitochondrion, partial genome
-    gi|1406948509|gb|MG737740.1| Magicicada neotredecim isolate MAGNEO mitochondrion, partial genome
-    gi|1406948747|gb|MG737757.1| Magicicada tredecula isolate MAGTDC mitochondrion, partial genome
-    gi|1406948537|gb|MG737742.1| Magicicada septendecula isolate MAGSDC mitochondrion, partial genome
-    ...
-
+### Blast
+Online blast, and parsing the blast object
+Full structure of the blast object: http://biopython.org/DIST/docs/tutorial/images/BlastRecord.png
 ```python
-## Theoretically this works but I haven't tested it
-fasta_file = open("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "r").read()
-handle = NCBIWWW.qblast("blastn", "nt", fasta_file)
-blast_record_2 = NCBIXML.parse(handle)
+#Simple case
+with open("/UCHC/LABS/Simon/Python_Test/singleseq.fasta", "r") as f:
+  single_sequence = f.read()
+handle = NCBIWWW.qblast("blastn", "nt", single_sequence)
+blast_record = NCBIXML.read(handle)
 
-for blast_object in blast_record_2:
-    for alignment in blast_object.alignments:
-        print(alignment.title)
-    
-```
-
-Instead we are all going to blast one of the mystery sequences:
-
-
-```python
-handle = NCBIWWW.qblast("blastn", "nt", sequence_record[0].seq)
-blast_record_3 = NCBIXML.read(handle)
-for alignment in blast_record_3.alignments:
+#parsing the blast object
+for alignment in blast_record.alignments[:10]:
     for hsp in alignment.hsps:
-        if hsp.expect < 0.0001:
+        if hsp.expect < 1e-10:
             print(alignment.title)
-            print("length:", alignment.length)
-            print("e-value:", hsp.expect)
-            print(hsp.identities)
-            #if you want to print the whole alignment, you have to break it into chunks
-            print(hsp.query[0:50], "...")
-            print(hsp.match[0:50], "...")
-            print(hsp.sbjct[0:50], "...")
-            print()
-        
-```
+            print("length:" + str(alignment.length))
+            print("e-value:" + str(hsp.expect))
+            print("identities:" + str(hsp.identities))
+            print(hsp.query[:50] + "...")
+            print(hsp.match[:50] + "...")
+            print(hsp.sbjct[:50] + "...")
+            print("")
 
-Protein blast search. You could also use blastx for this but I wanted to share the method for translating DNA to proteins.
-
-Protein outputs look ugly because it clumps things together for some reason
-
-
-```python
-def translate(sequence):
+# other blast programs work too
+def translate_max_ORF(sequence):
     table = 11
     min_pro_len = 100
     prolist = []
-
     for strand, nuc in [(+1, sequence), (-1, sequence.reverse_complement())]:
         for frame in range(3):
             length = 3 * ((len(sequence)-frame) // 3)
             for pro in nuc[frame:frame+length].translate(table).split("*"):
                 prolist.append(pro)
-    return(max(prolist, key=len))
+    print("ORF found")
+    return max(prolist, key=len)
 
-#handle = NCBIWWW.qblast("blastp", "nr", translate(sequence_record[0].seq))
-#blast_record_4 = NCBIXML.read(handle)
-for alignment in blast_record_4.alignments:
-    for hsp in alignment.hsps:
-        if hsp.expect < 0.0001:
-            print(alignment.title)
-            print("length:", alignment.length)
-            print("e-value:", hsp.expect)
-            print("identities:", hsp.identities)
-            print(hsp.query[0:50], "...")
-            print(hsp.match[0:50], "...")
-            print(hsp.sbjct[0:50], "...")
-            print()
+s = SeqIO.read("/UCHC/LABS/Simon/Python_Test/singleseq.fasta", "fasta")
+translated = translate_max_ORF(s.seq)
+print(translated)
+handle = NCBIWWW.qblast("blastp", "nr", single_sequence)
+blast_record = NCBIXML.read(handle)
 ```
 
-    gi|1406948510|gb|AWV83484.1| NADH dehydrogenase subunit 2 (mitochondrion) [Magicicada neotredecim] >gi|1406948524|gb|AWV83497.1| NADH dehydrogenase subunit 2 (mitochondrion) [Magicicada septendecim]
-    length: 323
-    e-value: 1.83572e-45
-    identities: 78
-    LIYFLIYSFSLYLICYLLDINNLNYLNQFFLIFGNKIKTFLVIIVFLSIG ...
-    L+YFLIYS SL+L CYL   NN+NYLNQ F++F NKI + +++++F+S+G ...
-    LVYFLIYSLSLFLTCYLFWTNNMNYLNQIFILFNNKITSLMLMVIFMSMG ...
+### Entrez
+Entrez 
+```python
+#Shows all available databases
+Entrez.email = "jason.vailionis@uconn.edu"
+handle = Entrez.einfo()
+record = Entrez.read(handle)
+print(record.keys())
+print(record['DbList'])
+
+#search any database with a keyword, and extract ids of results
+handle = Entrez.esearch("nucleotide", "aurelia aurita mitochondria")
+record = Entrez.read(handle)
+print(record.keys())
+print(record['IdList'])
+print(record['Count'])
+nucleotide_ids = record['IdList']
+
+#search the same database with that id, and extract any information
+handle = Entrez.efetch("nucleotide", id=nucleotide_ids, retmode = "xml")
+record = Entrez.read(handle)
+print(record[0].keys())
+print(record[0]['GBSeq_source'])
+print(record[0]['GBSeq_sequence'])
+print(record[0]['GBSeq_primary-accession'])
+```
+
+### Applied case
+blasting every sequence in a file, printing output summary
+assigning taxonomy based on top ten hits, writing the taxonomy into the sequence header
+**This takes really long so if you want to execute it, run ##mini## and not ##main##**
+**If you're running it from the command line, copy each def command separately**
+```python
+from Bio.Blast import NCBIWWW
+from Bio.Blast import NCBIXML
+from Bio import SeqIO
+from Bio import Entrez
+import random
+import re
+
+def assign_taxonomy(blast_object, e_cutoff = 1e10):
+    Entrez.email = "jason.vailionis@uconn.edu"
+    tax_list = []
     
-    gi|676260432|gb|AIM19523.1| NADH dehydrogenase subunit 2 (mitochondrion) [Magicicada tredecim]
-    length: 315
-    e-value: 1.07156e-44
-    identities: 76
-    LIYFLIYSFSLYLICYLLDINNLNYLNQFFLIFGNKIKTFLVIIVFLSIG ...
-    L+YFLIYS SL+L CYL   NN+NYLNQ F++F NKI + +++++F+S+G ...
-    LVYFLIYSLSLFLTCYLFWTNNMNYLNQIFILFNNKITSLMLMVIFMSMG ...
-    ...
+    for alignment in blast_object.alignments[:10]:
+        for hsp in alignment.hsps:
+            if hsp.expect < e_cutoff:
+                gi_number = re.findall("(gi\|[\d]*)\|", alignment.title)[0]
+                handle = Entrez.efetch(db="Nucleotide", id=gi_number, retmode="xml")
+                record = Entrez.read(handle)
+                handle.close()
+                #lineage = re.findall("'GBSeq_taxonomy': '([A-Za-z; /-]*)'", str(record))
+                #organism = re.findall("'GBSeq_organism': '([A-Za-z /-]*)'", str(record))
+                lineage = record[0]['GBSeq_taxonomy']
+                organism = record[0]['GBSeq_organism']
+                tax_list.append(lineage + "; " + organism)
+    
+    ordered_taxonomy = tax_list[0].split("; ")
+    split_tax_list = [set(a.split("; ")) for a in tax_list]
+            
+    shared_list = list(split_tax_list[0].intersection(*split_tax_list[1:]))
+    if len(shared_list) == 0:
+        #This means the matches are from different kingdoms
+        return "N/A"
+    else:
+        shared_index = []
+        for taxa in shared_list:
+            shared_index.append(ordered_taxonomy.index(taxa))
+        return ordered_taxonomy[max(shared_index)]
+    
+def print_blast_summary(blast_object):
+    for alignment in blast_object.alignments[:10]:
+        for hsp in alignment.hsps:
+            if hsp.expect < 1e-10:
+                print(alignment.title)
+                print("length:" + str(alignment.length))
+                print("e-value:" + str(hsp.expect))
+                print("identities:" + str(hsp.identities))
+                print(hsp.query[:50] + "...")
+                print(hsp.match[:50] + "...")
+                print(hsp.sbjct[:50] + "...")
+                print("")
+
+##mini##
+sequence_record = list(SeqIO.parse("/UCHC/LABS/Simon/Python_Test/mystery.fasta", "fasta"))
+print(len(sequence_record))
+random_seq = sequence_record[random.randint(0,9)]
+print(random_seq.id)
+handle = NCBIWWW.qblast("blastn", "nt", random_seq.seq)
+blast_record = NCBIXML.read(handle)
+print_blast_summary(blast_record)
+print(assign_taxonomy(blast_record))
 
 
-### Blast parsing and Entrez
+##main##
+with open("output.fasta", "w") as f:
+    for sequence in SeqIO.parse("mystery.fasta", "fasta"):
+        handle = NCBIWWW.qblast("blastn", "nt", sequence.seq)
+        blast_record = NCBIXML.read(handle)
+        handle.close()
+        print(sequence.id + "BLAST SUMMARY")
+        print_blast_summary(blast_record)
+        consensus_taxonomy = assign_taxonomy(blast_record, 1e-20)
+        print("Best taxonomic identification: " + consensus_taxonomy)
+        f.write(">" + sequence.id + "_" + consensus_taxonomy)
+        f.write(sequence.seq)    
+```
 
-To make these results useful, we want the code to parse through all the hits for every sequence and choose a consensus identity. You can do this using ncbi's taxonomy database. 
 
-Every ncbi database has a different type of accession number. The taxonomy database uses taxid's but it won't take gi numbers or gb numbers. 
 
-We can query the gb database using the gb numbers and then extract any info we want about our sequences
-
+###Applied case
+searching nt for sequences that match a keyword, writing them to a fasta file, and aligning them to a file called alignment.fasta
 
 ```python
 from Bio import Entrez
-import re
+from Bio.Align.Applications import MafftCommandline
+from Bio import AlignIO
+import os
+import sys
+from StringIO import StringIO
+#in python3 this is from io import StringIO
+#don't use sys in python3; you can refer to stdout without it
 
+os.system("module load mafft")
 Entrez.email = "jason.vailionis@uconn.edu"
-tax_list = []
+handle = Entrez.esearch(db="Nucleotide", term="cicadinae COI")
+record = Entrez.read(handle)
+result_ids = record['IdList']
 
-for alignment in blast_record_3.alignments:
-    for hsp in alignment.hsps:
-        if hsp.expect < 0.0001:
-            gb_number = re.findall("(gb\|.*)\|", alignment.title)[0]
-            handle = Entrez.efetch(db="Nucleotide", id=gb_number, retmode="xml")
-            record = Entrez.read(handle)
-            handle.close()
-            #lineage = re.findall("'GBSeq_taxonomy': '([A-Za-z; /-]*)'", str(record))
-            #organism = re.findall("'GBSeq_organism': '([A-Za-z /-]*)'", str(record))
-            lineage = record[0]['GBSeq_taxonomy']
-            organism = record[0]['GBSeq_organism']
-            tax_list.append(lineage + "; " + organism)
+handle2 = Entrez.efetch(db="Nucleotide", id=result_ids, retmode="xml")
+record2 = Entrez.read(handle2)
+with open("new_fasta.fasta", "w") as f:
+    for i in enumerate(record2):
+        new_fasta_seq = (">" + i[1]['GBSeq_organism'] +\
+                         i[1]['GBSeq_feature-table'][2]['GBFeature_quals'][3]['GBQualifier_value'] +\
+                         "_" + str(i[0]) + "\n").replace(" ", "_") + i[1]['GBSeq_sequence'] + "\n"
+        print(new_fasta_seq)
+        f.write(new_fasta_seq)
 
-print(tax_list)
-ordered_taxonomy = tax_list[0].split("; ")
-split_tax_list = [set(a.split("; ")) for a in tax_list]
-        
-shared_list = list(split_tax_list[0].intersection(*split_tax_list[1:]))
-shared_index = []
-for taxa in shared_list:
-    shared_index.append(ordered_taxonomy.index(taxa))
-print(ordered_taxonomy[max(shared_index)])
+mafft_cline = MafftCommandline(input="new_fasta.fasta")
+sys.stdout, sys.stderr = mafft_cline()
+with open ("alignment.fasta", "w") as f:
+    f.write(sys.stdout)
+
+#This doesn't work yet on python2, but I'll fix it some day
+#you can also read in the alignment object from stdout
+alignment = AlignIO.read(StringIO(sys.stdout), "fasta")
+for a in alignment:
+    print(a.seq)
 ```
-    Cicadidae
-    
-
- **note about Entrez.read()**
- 
-ENTREZ efetch returns a massive amount of data and I can't find good documentation about what all is available since it varies depending on the database and the entrez function
-
-I believe that because of that variability, the read function doesn't always parse perfectly.
-
-I found out that everything in this read command (reading from an efetch output) made a list with one item. Inside that list is a dictionary with many items. Many of those internal items are also multi-item lists with dictionaries inside each item. They are supposed to be dictionaries all the way down but that's not how it comes out.
-
-If you want to parse through an object like this you need go to the correct list index and then use the correct key. It's a huge tree-like structure. To show all of the pieces in a dictionary put .keys() at the end 
-
-eg.
-
-    print(record[0].keys())
-    
-if you want to see all the dictionaries inside a list, either loop through it or print the whole thing. Every DictElement() indicates a different dictionary that can be accessed by a list index....
-
-To access the lineage data we need you would do:
-
-    record[0]['GBSeq_lineage']
-But the paths to some of the items can look like this: 
-
-    record[0]['GBSeq_feature-table'][0]['GBFeature_quals'][1]['GBQualifier_name']
-
-For fun I might make some code that loops through the objects and makes their structure readable. But for now, if you don't want to bother with any of this the best option is to print the whole thing as a string and extract what you want with regular expressions:
-
-eg.
-
-    lineage = re.findall("'GBSeq_taxonomy': '([A-Za-z; /-]*)'", str(record))
-    
-remember that re.findall() returns a list even if there's one result! If you need this single item as a string, do:
-
-    lineage[0]
-
-
-
-
-
-![image.png](attachment:image.png)
-
-http://biopython.org/DIST/docs/tutorial/images/BlastRecord.png
-
-
