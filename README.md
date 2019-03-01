@@ -118,6 +118,11 @@ Log out of and then back into the cluster:
 ```
 Now you can see where you are all the time! Neat! 
 
+
+You can also add an alias command to set up an interactive job like so 
+
+alias sRun='srun -c 1 --partition=general --qos=general --mem=2G --pty bash'
+
 ## CLUSTER THINGS
 
 One of the benefits of using the cluster is that commonly used programs are already installed on it and thus easy to use. To activate the commands associated with these programs use **module load** and the program name. You can use tab to see all the programs available. Try typing:
