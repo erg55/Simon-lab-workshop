@@ -281,6 +281,9 @@ For this we use Trimmomatic. We will also need to download a file with the seque
 ```
 module load Trimmomatic
 cp ../../egordon/metagenomes/files/TruSeq3-PE.fa .
+
+#Sometimes gives error so can do this way
+#java -jar /isg/shared/apps/Trimmomatic/0.36/trimmomatic-0.36.jar 
 trimmomatic-0.36.jar PE -phred33 S125_dedup_R1.fastq.gz S125_dedup_R2.fastq.gz S125_forward_paired.fq.gz S125_forward_unpaired.fq.gz S125_reverse_paired.fq.gz S125_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50;
 ```
 This also takes a while. It looks like bases and reads were trimmed. 
