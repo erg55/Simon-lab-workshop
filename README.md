@@ -753,8 +753,9 @@ tell application "Terminal"
     do script with command the_selection in window 1
 end tell
 ```
-
+TextWrangler version
 ```
+#!usr/bin/osascript
 tell application "TextWrangler"
     set the_selection to (selection of front window as string)
     if (the_selection) is "" then
