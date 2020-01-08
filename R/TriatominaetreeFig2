@@ -1,0 +1,153 @@
+#load modules 
+library(ape)
+library(ggtree)
+library(phytools)
+library(ggplot2)
+#read in tree and calssification
+tree1 <- read.tree("UCE_Ericoperon_noCOI_v2_RAxML_Partitioned_bipartitions (2).reconciled_tree")
+tab <- read.csv("Triatominae.class.test.csv", stringsAsFactors=F)
+
+
+##rerooting with one terminal and correct branch lengths
+tree2 <- root(tree1, outgroup=which(tree1$tip.label == "Pasiropsis_sp"), edgelabel = T, resolve.root = T)
+#get edge length for rerooting
+plot(tree2, cex=.2)
+edgelabels(cex=.5)
+nodelabels(cex=.5)
+tree2$edge.length
+tree2$tip.label
+#divide edge length by two and root there
+y=2.436479e-01/2
+treereroot2 <- reroot(tree2, node.number=154, position=y)
+plot(treereroot2, cex=.5)
+nodelabels(cex=.5)
+
+gtest <- ggtree(treereroot2, ladderize = T, right =T) +
+  geom_tiplab(size= 1) + 
+  geom_text2(aes(subset = !isTip & as.numeric(label) > 65, label=label, x = branch), vjust =0, size = 1.5) +
+  xlim(0,0.6)
+
+
+#classification for tip and terminal colors
+cls <- list(infestans3=tab$Name[tab$group3=="infestans-infestans-infestans"], lecticularia=tab$Name[tab$group3=="rubrofasciata-\"lecticularia\""], phyllosoma=tab$Name[tab$group3=="rubrofasciata-phyllosoma-phyllosoma"],dimid=tab$Name[tab$group3=="rubrofasciata-phyllosoma-dimidiata"], protracta=tab$Name[tab$group3=="rubrofasciata-protracta"], rubrofasc=tab$Name[tab$group3=="rubrofasciata-rubrofasciata"])
+clstest <- list(rubrofasciata=tab2$Name[tab2$group4=="rubrofasciata"], lecticularia=tab2$Name[tab2$group4=="rubrofasciata-\"lecticularia\""])
+treewithclass <- groupOTU(tree2,cls)
+
+#Label taxon and tree with colors
+g <- ggtree(treewithclass, ladderize = T, right =T, aes(color=group)) +
+  geom_tiplab(size=0) + 
+  geom_text2(aes(subset = !isTip & as.numeric(label) > 65, label=label, x = branch), vjust =-0.35, hjust=0.5, size = 1.5) +
+  xlim(0,0.6) +
+  scale_color_manual(values = c("0"="black",infestans3="black",lecticularia="#990033", phyllosoma="#0070c0", dimid="#993300", rubrofasc="#336600", protracta="#cc9900"), 
+                     breaks= c("lecticularia", "phyllosoma"))
+
+plot(g)
+
+
+## clade labelling outline function to find monophyletic node given clade membership
+## Input "phylo" tree object
+## Input metadata in a dataframe where first column is tip names and second column is clade names
+get_clade_nodes <- function(phy_tree, metadata_df) {
+  groups <- levels(as.factor(metadata_df[[5]]))
+  
+  out <- sapply(groups, function(x){
+    names <- as.character(metadata_df[[1]][which(x == metadata_df[5])])
+    if (length(names) == 1){
+      return(which(names == phy_tree$tip.label))
+    } else {
+      return(getMRCA(phy_tree, names))
+    }
+  })
+  names(out) <- groups
+  return(out)
+}
+
+z <- get_clade_nodes(treewithclass, tab)
+#add clades colors and labels for highlighting..include italics
+g2 <- g + 
+  geom_cladelabel(node=z['neivai+domesticus'], label= "italic('neivai')+italic('domesticus')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, fontsize=2.2) +
+  geom_cladelabel(node=z['pallescens/ecuadoriensis group'], label="italic('pallescens')/italic('ecuadoriensis')~'group'", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['Psammolestes'], label= "italic('Psammolestes')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['pictipes group'], label="italic('pictipes')~'group'", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['prolixus group'], label="italic('prolixus')~'group'", parse=TRUE,  offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['dispar-dispar'], label="italic('dispar-dispar')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"brasiliensis"'], label='italic(\'infestans-infestans-"brasiliensis"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"brasiliensis"2'], label='italic(\'infestans-infestans-"brasiliensis"\')', parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-spinolai'], label="italic('infestans-spinolai')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"sordida"'], label='italic(\'infestans-infestans-"sordida"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"maculata"'], label='italic(\'infestans-infestans-"maculata"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"maculata"2'], label='italic(\'infestans-infestans-"maculata"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"matogrossensis"2'], label='italic(\'infestans-infestans-"matogrossensis"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"matogrossensis"'], label='italic(\'infestans-infestans-"matogrossensis"\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-"sordida"+rubrovaria'], label='italic(\'infestans-infestans-"sordida"+rubrovaria\')', parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['Panstrongylus rufotuberculatus'], label="italic('Panstrongylus rufotuberculatus')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['rubrofasciata-"lecticularia"'], label="italic('rubida')/italic('rubrofasciata')/italic('protracta')", parse=T, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['rubrofasciata'], label="italic('phyllosoma')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['flavida'], label="italic('flavida')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['Eratyrus'], label="italic('Eratyrus')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['infestans-infestans-infestans'], label="italic('infestans-infestans-infestans')", parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['"Bolboderini"'], label='plain(\'"Bolboderini"\')', parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_cladelabel(node=z['"Bolboderini"2'], label='plain(\'"Bolboderini"\')', parse=TRUE, offset = 0.01, extend= 0.1, align=T, offset.text=.005, barsize =0, fontsize=2.2) +
+  geom_hilight(node = z['neivai+domesticus'], extendto = 0.59, aes(fill = "#e7edf7"), alpha = .8) + 
+  geom_hilight(node = z['pallescens/ecuadoriensis group'], extendto = 0.59, aes(fill = "#b7c6d4"), alpha = .8) +
+  geom_hilight(node = z['Psammolestes'], extendto = 0.59, aes(fill = "#add1eb"), alpha = .8) +
+  geom_hilight(node = z['pictipes group'], extendto = 0.59, aes(fill = "#f4f9fc"), alpha = .9) +
+  geom_hilight(node = z['prolixus group'], extendto = 0.59, aes(fill = "#e7edf7"), alpha = .6) +
+  geom_hilight(node = z['dispar-dispar'], extendto = 0.59, aes(fill = "#ebadad"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"brasiliensis"'], extendto = 0.59, aes(fill = "#fef7f2"), alpha = 1) +
+  geom_hilight(node = z['infestans-infestans-"brasiliensis"2'], extendto = 0.59, aes(fill = "#fef7f2"), alpha = 1) +
+  geom_hilight(node = z['infestans-spinolai'], extendto = 0.59, aes(fill = "#ecf5e7"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"sordida"'], extendto = 0.59, aes(fill = "#f9d5bd"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"maculata"'], extendto = 0.59, aes(fill = "#eadbad"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"maculata"2'], extendto = 0.59, aes(fill = "#eadbad"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"matogrossensis"2'], extendto = 0.59, aes(fill = "#ffadad"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"matogrossensis"'], extendto = 0.59, aes(fill = "#ffadad"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-"sordida"+rubrovaria'], extendto = 0.59, aes(fill = "#fff3ce"), alpha = .8) +
+  geom_hilight(node = z['Panstrongylus rufotuberculatus'], extendto = 0.59, aes(fill = "#f6faf3"), alpha = .8) +
+  geom_hilight(node = z['rubrofasciata-"lecticularia"'], extendto = 0.59, aes(fill = "#ade6c7"), alpha = .8) +
+  geom_hilight(node = z['rubrofasciata'], extendto = 0.59, aes(fill = "#c8d7be"), alpha = .8) +
+  geom_hilight(node = z['flavida'], extendto = 0.59, aes(fill = "#bfc9b8"), alpha = .8) +
+  geom_hilight(node = z['Eratyrus'], extendto = 0.59, aes(fill = "#d1e5c4"), alpha = .8) +
+  geom_hilight(node = z['infestans-infestans-infestans'], extendto = 0.59, aes(fill = "#fbe6d7"), alpha = .8)
+
+
+#reorder boxes behind
+g2$layers <- c(g2$layers[-1:-46], g2$layers[1:46])
+g2
+
+
+#automatic italilicization except for sp. 
+g2$data$label2 <- as.numeric(g2$data$label)
+
+labellist <- lapply(g2$data$label, function(y) {templist = strsplit(y, "_")[[1]]
+out1 = paste0('italic("', templist[1], ' ')
+#keep sp not in italics and add a period
+if (templist[2] %in% c("sp", "spa", "spd", "spc", "spb") & !is.na(templist[2])){
+  out2 = paste0('")~"', sub("sp", "sp. ", templist[2]), '"')
+} else {
+  out2 = paste0(templist[2], '")')
+}
+if (is.na(templist[3])) {
+  return(paste0(out1, out2))
+} else {
+  return(paste0(out1, out2, '~"', templist[3], '"'))
+}})
+
+
+#colors for bootstrap symbols and also again tips
+cols <- c("100" = "black", "95-99" = "orange", "65-95" = "lightblue", "0"="black", lecticularia="#990033", infestans3="black", phyllosoma="#0070c0", dimid="#993300", rubrofasc="#336600", protracta="#cc9900")
+
+#output to pdf 
+pdf("output.pdf", width=8.5, height=11)
+
+g4 <- g2 + geom_point2(aes(subset=!is.na(label2) & label2 == "100", label = "100", color="100"), shape = 16) +
+  geom_point2(aes(subset=!is.na(label2)  & label2 >95 & label2 < 100, label="95-99", color="95-99"), shape= 17) + 
+  geom_point2(aes(subset=!is.na(label2)  & label2 <95, label="65-95", color="65-95"), shape = 15) + 
+  scale_color_manual(name = "bootstrap", breaks=c("100", "95-99", "65-95"), values = cols,  labels = c("100", "95-99", "65-95")) +
+  theme(legend.position="right") + 
+  geom_tiplab(aes(label = labellist), parse = TRUE, size = 1.75)
+plot(g4)
+
+dev.off()
+
+#change a couple of labels....remove clade bars...add other labels in illustartor
