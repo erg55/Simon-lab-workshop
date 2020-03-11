@@ -116,7 +116,7 @@ Okay so some basic tasks:
 
 1) For every alignment, get the total length. 
 
-2) For every alignment get the number of taxa represented. 
+2) For every alignment, get the number of taxa represented. 
 
 3) Across all alignments, which taxon is the least represented. 
 
