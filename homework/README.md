@@ -107,7 +107,7 @@ Go through all the other steps of assembly. You may need to create and submit sb
 We have some different skill levels so this will be a little hard to make nice for everyone but I will try. Googling hopefully will be able to help you! 
 
 
-I was thinking we could do some basic summarizing of our alignment files. Probably it is easiest to do this using basic bash commands but if you want to try it in python or anothe rlangauge you should go for it. We should all be able to compare codes and see if they differ in any way. 
+I was thinking we could do some basic summarizing of our alignment files. Probably it is easiest to do this using basic bash commands but if you want to try it in python or another langauge you should go for it. We should all be able to compare codes and see if they differ in any way. 
 
 Make sure not to overwrite any important files. I would work on maybe a subset of your files while you verify that your script or commands work and then apply them to the whole folder .....I would think the final trimmed alignments would be good to use. 
 
