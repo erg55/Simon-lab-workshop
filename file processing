@@ -1,4 +1,12 @@
 sed _NODE.+cov_\d+._\d\d\d\d\d\d_ with _ 
 sed _NXG.\d+_ with _
+sed _NODE.+cov_\d+._\d\d\d\d\d\d\n with 
+_\d+_length_\d+_circular_ wiht _
+_\d+_length_\d+_ with _
+_rpoB_ with _
 
 then lookup2.txt 
+
+
+Cuba  sp. 
+RATTLESTRIPE Cicadinae sp. 
