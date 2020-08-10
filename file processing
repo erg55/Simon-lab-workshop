@@ -1,2 +1,4 @@
-sed _NODE.+cov_\d+._\d\d\d\d\d\d_ with _ #48
+sed _NODE.+cov_\d+._\d\d\d\d\d\d_ with _ 
+sed _NXG.\d+_ with _
 
+then lookup2.txt 
