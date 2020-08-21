@@ -4,12 +4,19 @@ sed _NODE.+cov_\d+._\d\d\d\d\d\d\n with
 _\d+_length_\d+_circular_ wiht _
 _\d+_length_\d+_ with _
 _rpoB_ with _
-
-
+bihamatus\d with bihamatus
+aurapilosa 
+chilensis
+limbata
 \d? 
 
 then lookup2.txt 
-
+nrfranceaustralae with nr._ franceaustralae 
 blasksidespot sp. 
 Cuba  sp. 
 RATTLESTRIPE Cicadinae sp. 
+
+
+nucleotide
+
+_NODE.+cov_\d+\.\d\d\d\d\d\d\n with \n
