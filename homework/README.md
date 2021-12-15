@@ -113,6 +113,7 @@ Replace the --left and --right with your forward and reverse read names.
 ```
 module load sratoolkit
 fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRR11658068
+module load trinity
 Trinity --seqType fq --left SRR11658068_1.fastq --right SRR11658068_2.fastq --CPU 20 --max_memory 150G 
 ```
 
