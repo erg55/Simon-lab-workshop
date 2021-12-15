@@ -102,6 +102,22 @@ Go through all the other steps of assembly. You may need to create and submit sb
 
 
 
+
+
+# Trinity stuff 
+
+Biggest Asopinae transcriptome data on SRA [SRR11658068](https://www.ncbi.nlm.nih.gov/sra/SRX8218988[accn])
+
+Replace the --left and --right with your forward and reverse read names.
+
+```
+module load sratoolkit
+fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRR11658068
+Trinity --seqType fq --left SRR11658068_1.fastq --right SRR11658068_2.fastq --CPU 20 --max_memory 150G 
+```
+
+
+
 # Homework for bioinformatics group 
 
 We have some different skill levels so this will be a little hard to make nice for everyone but I will try. Googling hopefully will be able to help you! 
